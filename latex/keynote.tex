@@ -6,7 +6,7 @@
 \setbeamertemplate{bibliography item}{} % No icons
 \usepackage{tikz}
 \usepackage{hyperref}
-
+\usepackage{booktabs}
 % --- Biblatex setup ---
 \usepackage[
   backend=biber,
@@ -22,7 +22,7 @@
 \newcommand{\bottomleftrefs}{%
   \begin{tikzpicture}[remember picture,overlay]
     \node[anchor=south west, xshift=1pt, yshift=1pt] at (current page.south west) {%
-      \parbox{0.7\linewidth}{
+      \parbox{0.9\linewidth}{
         \setlength{\bibitemsep}{0pt plus 0.3ex}
         \printbibliography[heading=none]
       }
