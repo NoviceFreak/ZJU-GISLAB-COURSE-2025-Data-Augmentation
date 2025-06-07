@@ -291,6 +291,47 @@
     \end{frame}
     \end{refsection}
 
+    %--- Additional Slides: Downstream Tasks for Project Assignment ---
+
+% \begin{refsection}
+%   \begin{frame}{Downstream Tasks Overview}
+%     \begin{itemize}
+%       \item In this project, we focus on two key downstream tasks:
+%       \begin{enumerate}
+%         \item \textbf{Image Scene Classification} using foundation models like CLIP.
+%         \item \textbf{Image Super-Resolution} using generative models like Real-ESRGAN.
+%       \end{enumerate}
+%       \item We aim to evaluate whether synthetic data improves model performance on these tasks.
+%     \end{itemize}
+%   \end{frame}
+%   \end{refsection}
+  
+  \begin{refsection}
+  \begin{frame}{Image Scene Classification with CLIP}
+    % \textbf{CLIP: Contrastive Language–Image Pretraining}
+    \begin{figure}
+      \centering
+      \includegraphics[width=\linewidth]{figs/clip.png}
+      \caption{\scriptsize CLIP~\parencite{radfordLearningTransferableVisual2021} model overview: joint training of image and text encoders for cross-modal understanding.}
+    \end{figure}
+
+    \bottomleftrefs
+  \end{frame}
+  \end{refsection}
+  
+  \begin{refsection}
+  \begin{frame}{Super-Resolution with Real-ESRGAN}
+    % \textbf{Real-ESRGAN: Enhanced Super-Resolution GAN}
+    \begin{figure}
+      \centering
+      \includegraphics[width=\linewidth]{figs/realesrgan.png}
+      \caption{\scriptsize Real-ESRGAN~\parencite{wangRealESRGANTrainingRealWorld2021b} framework: architecture for real-world image super-resolution.}
+    \end{figure}
+    \bottomleftrefs
+  \end{frame}
+  \end{refsection}
+
+  
 \begin{refsection}
   \begin{frame}{Baseline Models for Scene Classification and Super-Resolution}
     \textbf{Scene Image Classification:}
@@ -315,6 +356,25 @@
   \end{frame}
   \end{refsection}
 
+  %--- Slide: Datasets for Downstream Tasks ---
+\begin{refsection}
+  \begin{frame}{Datasets for Downstream Tasks}
+    \textbf{Text-to-Image Generation:}
+    \begin{itemize}
+      \item \textbf{RSICD}~\parencite{lu2017exploring}: Remote Sensing Image Captioning Dataset with 10,921 images and five captions per image.
+      \item \textbf{RSICap}~\parencite{hu2023rsgpt}: High-quality dataset with 2,585 human-annotated image-caption pairs.
+      \item \textbf{UCM-Captions}~\parencite{qu2016deep}: Derived from the UC Merced Land Use Dataset, containing 2,100 images with five captions each.
+    \end{itemize}
+    \vspace{1em}
+    \textbf{Super-Resolution:}
+    \begin{itemize}
+      \item \textbf{fMoW}: Paired dataset of Sentinel-2 (10m GSD)~\parencite{congFunctionalMapWorld2022} and fMoW-RGB (0.3m)~\parencite{christieFunctionalMapWorld2018}.
+    \end{itemize}
+    \bottomleftrefs
+  \end{frame}
+  \end{refsection}
+
+  
 \begin{refsection}
   \begin{frame}{Possible Results}
     \begin{itemize}
