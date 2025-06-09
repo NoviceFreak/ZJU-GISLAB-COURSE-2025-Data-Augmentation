@@ -1,0 +1,86 @@
+\documentclass[aspectratio=169]{beamer}
+% \pdfpagewidth=1920bp
+% \pdfpageheight=1080bp
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{headline}{} % No headline
+\setbeamertemplate{bibliography item}{} % No icons
+\usepackage[UTF8]{ctex}
+
+\usepackage{tikz}
+\usepackage{hyperref}
+\usepackage{booktabs}
+% --- Biblatex setup ---
+\usepackage[
+  backend=biber,
+  style=keynote,
+  citestyle=keynote,
+  maxbibnames=1,
+  uniquename=false,
+  sorting=none
+]{biblatex}
+\addbibresource{references.bib}
+% --- Helper: left-bottom reference box ---
+\renewcommand*{\bibfont}{\fontsize{5}{6}\selectfont}
+\newcommand{\bottomleftrefs}{%
+  \begin{tikzpicture}[remember picture,overlay]
+    \node[anchor=south west, xshift=1pt, yshift=1pt] at (current page.south west) {%
+      \parbox{0.9\linewidth}{
+        \setlength{\bibitemsep}{0pt plus 0.3ex}
+        \printbibliography[heading=none]
+      }
+    };
+  \end{tikzpicture}%
+}
+
+% --- Custom footline with annotated adjustments ---
+\setbeamertemplate{footline}{%
+  \leavevmode%
+  % ----- LEFT: citation area -----
+  \begin{minipage}[b]{0.70\paperwidth}
+    \vspace{0.2em}
+    {%
+      % Set font size and type for the citation area
+      \fontsize{8}{10}\selectfont % (8pt, 10pt line spacing)
+      \textsf{ % Sans-serif font for references
+        \ifdefined\slidebib
+          \slidebib
+        \fi
+      }
+    }
+  \end{minipage}%
+  \hfill
+  % ----- RIGHT: copyright area -----
+  \begin{minipage}[b]{0.28\paperwidth}
+    \vspace{0.2em}
+    \raggedleft
+    {%
+      % Set font size and type for copyright
+      \fontsize{9}{11}\selectfont % (9pt, 11pt line spacing)
+      \textrm{ % Serif font for copyright
+        \textcopyright~2025 Sakura
+      }
+    }
+  \end{minipage}%
+}
+
+% Helper macro: define per-slide bibliography (reset on every slide)
+\newcommand{\slidebib}{}
+
+%--- Metadata ---
+\title[]{生成模型合成数据已准备好用于图像识别了吗？}
+\subtitle{GISLab 2025年暑期短课程}
+\author[Sakura]{陈振源}
+\institute[ZJU]{浙江大学地球科学学院}
+\date{2025\\\small\texttt{bili\_sakura@zju.edu.cn}}
+
+\begin{document}
+
+%--- Cover slide ---
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\input{slides_zh}
+
+
+\end{document}
