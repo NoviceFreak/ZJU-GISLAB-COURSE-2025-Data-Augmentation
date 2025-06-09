@@ -322,3 +322,65 @@
   organization={IEEE},
   publisher = {CITS},
 }
+@article{mengConditionalDiffusionModel2024,
+  title = {A {{Conditional Diffusion Model With Fast Sampling Strategy}} for {{Remote Sensing Image Super-Resolution}}},
+  author = {Meng, Fanen and Chen, Yijun and Jing, Haoyu and Zhang, Laifu and Yan, Yiming and Ren, Yingchao and Wu, Sensen and Feng, Tian and Liu, Renyi and Du, Zhenhong},
+  year = {2024},
+  journal = {IEEE Transactions on Geoscience and Remote Sensing},
+  volume = {62},
+  pages = {1--16},
+  issn = {1558-0644},
+  doi = {10.1109/TGRS.2024.3458009},
+  urldate = {2025-06-09},
+  abstract = {Conventional deep learning-based methods for single remote sensing image super-resolution (SRSISR) have made remarkable progress. However, the super-resolution (SR) outputs of these methods are yet to become sufficiently satisfactory in visual quality. Recent diffusion model-based generative deep learning models are capable to enhance the visual quality of output images, but this capability is limited due to their sampling efficiency. In this article, we propose FastDiffSR, an SRSISR method based on a conditional diffusion model. Specifically, we devise a novel sampling strategy to reduce the number of sampling steps required by the diffusion model while ensuring the sampling quality. Meanwhile, the residual image is adopted to reduce computational costs, demonstrating that integrating channel attention and spatial attention begets a further improvement in the visual quality of output images. Compared to the state-of-the-art (SOTA) convolutional neural network (CNN)-based, GAN-based, and Transformer-based SR methods, our FastDiffSR improves the learned perceptual image patch similarity (LPIPS) by 0.1--0.2 and achieves better visual results in some real-world scenes. Compared with existing diffusion-based SR methods, our FastDiffSR achieves significant improvements in pixel-level evaluation metric peak signal-noise ratio (PSNR) while having smaller model parameters and obtaining better SR results on Vaihingen data with faster inference time by 2.8--28 times, showing excellent generalization ability and time efficiency. Our code will be open source at https://github.com/Meng-333/FastDiffSR.},
+  keywords = {Computational modeling,Conditional diffusion model,deep learning,Diffusion models,generative models,remote sensing,Remote sensing,super-resolution (SR),Superresolution,Training,Transformers,Visualization},
+  file = {D:\ZoteroLib\storage\U3SEYGG7\Meng et al. - 2024 - A Conditional Diffusion Model With Fast Sampling Strategy for Remote Sensing Image Super-Resolution.pdf}
+}
+
+@inproceedings{ucm2010,
+author = {Yang, Yi and Newsam, Shawn},
+title = {Bag-of-visual-words and spatial extensions for land-use classification},
+year = {2010},
+isbn = {9781450304283},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/1869790.1869829},
+doi = {10.1145/1869790.1869829},
+abstract = {We investigate bag-of-visual-words (BOVW) approaches to land-use classification in high-resolution overhead imagery. We consider a standard non-spatial representation in which the frequencies but not the locations of quantized image features are used to discriminate between classes analogous to how words are used for text document classification without regard to their order of occurrence. We also consider two spatial extensions, the established spatial pyramid match kernel which considers the absolute spatial arrangement of the image features, as well as a novel method which we term the spatial co-occurrence kernel that considers the relative arrangement. These extensions are motivated by the importance of spatial structure in geographic data.The methods are evaluated using a large ground truth image dataset of 21 land-use classes. In addition to comparisons with standard approaches, we perform extensive evaluation of different configurations such as the size of the visual dictionaries used to derive the BOVW representations and the scale at which the spatial relationships are considered.We show that even though BOVW approaches do not necessarily perform better than the best standard approaches overall, they represent a robust alternative that is more effective for certain land-use classes. We also show that extending the BOVW approach with our proposed spatial co-occurrence kernel consistently improves performance.},
+booktitle = {Proceedings of the 18th SIGSPATIAL International Conference on Advances in Geographic Information Systems},
+pages = {270–279},
+numpages = {10},
+keywords = {bag-of-visual-words, land-use classification, local invariant features},
+location = {San Jose, California},
+series = {GIS '10}
+}
+
+@article{ROTTENSTEINER2014256,
+title = {Results of the ISPRS benchmark on urban object detection and 3D building reconstruction},
+journal = {ISPRS Journal of Photogrammetry and Remote Sensing},
+volume = {93},
+pages = {256-271},
+year = {2014},
+issn = {0924-2716},
+doi = {https://doi.org/10.1016/j.isprsjprs.2013.10.004},
+url = {https://www.sciencedirect.com/science/article/pii/S0924271613002268},
+author = {Franz Rottensteiner and Gunho Sohn and Markus Gerke and Jan Dirk Wegner and Uwe Breitkopf and Jaewook Jung},
+keywords = {Automatic object extraction, 3D building reconstruction, Aerial imagery, Laser scanning, Evaluation, Benchmarking test},
+abstract = {For more than two decades, many efforts have been made to develop methods for extracting urban objects from data acquired by airborne sensors. In order to make the results of such algorithms more comparable, benchmarking data sets are of paramount importance. Such a data set, consisting of airborne image and laserscanner data, has been made available to the scientific community by ISPRS WGIII/4. Researchers were encouraged to submit their results of urban object detection and 3D building reconstruction, which were evaluated based on reference data. This paper presents the outcomes of the evaluation for building detection, tree detection, and 3D building reconstruction. The results achieved by different methods are compared and analysed to identify promising strategies for automatic urban object extraction from current airborne sensor data, but also common problems of state-of-the-art methods.}
+}
+
+@inproceedings{postdam,
+  title = {Fully {{Convolutional Networks}} for {{Dense Semantic Labelling}} of {{High-Resolution Aerial Imagery}}},
+  author = {Sherrah, Jamie},
+  year = {2016},
+  month = jun,
+  number = {arXiv:1606.02585},
+  eprint = {1606.02585},
+  primaryclass = {cs},
+  publisher = {arXiv},
+  doi = {10.48550/arXiv.1606.02585},
+  urldate = {2025-06-09},
+  abstract = {The trend towards higher resolution remote sensing imagery facilitates a transition from land-use classification to object-level scene understanding. Rather than relying purely on spectral content, appearance-based image features come into play. In this work, deep convolutional neural networks (CNNs) are applied to semantic labelling of high-resolution remote sensing data. Recent advances in fully convolutional networks (FCNs) are adapted to overhead data and shown to be as effective as in other domains. A full-resolution labelling is inferred using a deep FCN with no downsampling, obviating the need for deconvolution or interpolation. To make better use of image features, a pre-trained CNN is fine-tuned on remote sensing data in a hybrid network context, resulting in superior results compared to a network trained from scratch. The proposed approach is applied to the problem of labelling high-resolution aerial imagery, where fine boundary detail is important. The dense labelling yields state-of-the-art accuracy for the ISPRS Vaihingen and Potsdam benchmark data sets.},
+  archiveprefix = {arXiv},
+  keywords = {Computer Science - Computer Vision and Pattern Recognition}
+}
