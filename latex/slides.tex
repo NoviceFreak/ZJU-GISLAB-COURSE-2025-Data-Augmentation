@@ -2,11 +2,379 @@
 %--- Slide 1: Outline ---
 \begin{refsection}
   \begin{frame}{Outline}
-
+    \begin{itemize}
+      \item 1. Introduction to Image Classification using Deep Learning
+      \item 2. Traditional Data Augmentation Methods
+      \item 3. Generative Models for Data Augmentation
+      \item 4. Remote Sensing Dataset for Diaster Events: xBD
+    \end{itemize}
+    \begin{itemize}
+      \item Project - \textbf{Explore whether generated images can benefit image classification}
+    \end{itemize}
   \end{frame}
 \end{refsection}
 
+
+\begin{refsection}
+  \begin{frame}{Image Classification: Overview}
+    \begin{figure}
+      \centering
+      \includegraphics[height=0.65\textheight]{image_classification_idea.png}
+      \caption{\scriptsize Overview of image classification.}
+    \end{figure}
+    \bottomleftrefs
+  \end{frame}
+\end{refsection}
+
+\begin{refsection}
+  \begin{frame}{Background: Image Classification with Deep Learning}
+    \begin{figure}
+      \centering
+      \begin{minipage}{0.48\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{imagenet2.png}
+      \end{minipage}\hfill
+      \begin{minipage}{0.48\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{alexnet.png}
+      \end{minipage}
+      \caption[]{\scriptsize Left: AlexNet on ILSVRC-2010~\parencite{imagenet2010challenge} \quad Right: Architecture of AlexNet~\parencite{krizhevskyImageNetClassificationDeep2012}.}
+    \end{figure}
+    \bottomleftrefs
+  \end{frame}
+\end{refsection}
+
+\begin{refsection}
+  \begin{frame}{Architecture Evolution of Image Classification}
+    \begin{minipage}{0.48\linewidth}
+      {\small
+      \begin{itemize}
+        % \item \textbf{2012: AlexNet} \\
+        % \parencite{krizhevskyImageNetClassificationDeep2012}
+        % \item \textbf{2016: ResNet} \\
+        % \parencite{heDeepResidualLearning2016}
+        \item \textbf{2012: AlexNet}, \textbf{2016: ResNet}
+        \item \textbf{2021: ViT} \\
+        \item \textbf{2021: Swin Transformer} \\
+        \parencite{liuSwinTransformerHierarchical2021}
+        \parencite{dosovitskiyImageWorth16x162020}
+        \item \textbf{2021: CLIP-ViT} \\
+        \parencite{radfordLearningTransferableVisual2021}
+        \item \textbf{2022: MAE-ViT} \\
+        \parencite{heMaskedAutoencodersAre2022}
+        \item \textbf{2022: CoCa-ViT} \\
+        \parencite{yuCoCaContrastiveCaptioners2022}
+      \end{itemize}
+      }
+    \end{minipage}%
+    \hfill
+    \begin{minipage}{0.48\linewidth}
+      \centering
+      \includegraphics[width=0.95\linewidth]{vit.png}
+      \scriptsize Overview of Vision Transformer\\\parencite{dosovitskiyImageWorth16x162020}.
+    \end{minipage}
+    \bottomleftrefs
+  \end{frame}
+\end{refsection}
+
+\begin{refsection}
+  \begin{frame}{RemoteCLIP: Vision-Language Foundation Model for Remote Sensing}
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.8\linewidth]{remoteclip.png}
+      \caption{\scriptsize RemoteCLIP~\parencite{liuRemoteCLIPVisionLanguage2024}: A Vision-Language Foundation Model for Remote Sensing.}
+    \end{figure}
+    \bottomleftrefs
+  \end{frame}
+\end{refsection}
+
+\begin{refsection}
+  \begin{frame}{Traditional Data Augmentation Methods}
+    \begin{itemize}
+      \item \textbf{Geometric Transformations:} \textbf{Rotation}, \textbf{Flipping} (horizontal/vertical), \textbf{Scaling}, \textbf{Translation}, \textbf{Cropping}
+      \item \textbf{Color Jittering:} Adjusting brightness, contrast, saturation, and hue
+      \item \textbf{Noise Injection:} Adding random noise to images
+      \item \textbf{Cutout}~\parencite{devriesImprovedRegularizationConvolutional2017}
+      \item \textbf{CutMix}~\parencite{yunCutMixRegularizationStrategy2019}
+      \item \textbf{Copy-Paste}~\parencite{ghiasiSimpleCopyPasteStrong2021}
+    \end{itemize}
+    There is also a comprehensive study entitled 'How to train your ViT? Data, Augmentation,  and Regularization in Vision Transformers'~\parencite{steinerHowTrainYour2022}.
+    \bottomleftrefs
+  \end{frame}
+\end{refsection}
+
+\begin{refsection}
+  \begin{frame}{Generative Models for Data Augmentation}
+    \begin{figure}
+      \centering
+      \includegraphics[height=0.6\textheight]{satsyn.png}
+      
+      \vspace{0.5em}
+      \caption{\scriptsize SatSyn~\parencite{tokerSatSynthAugmentingImageMask2024} proposes a generative model (diffusion model) to generate both images and corresponding masks for satellite segmentation. The synthetic dataset is used for data augmentation, yielding significant quantitative improvements in satellite semantic segmentation compared to other data augmentation methods.}
+    \end{figure}
+
+    \bottomleftrefs
+  \end{frame}
+\end{refsection}
+
+\begin{refsection}
+  \begin{frame}{Generated Text-Image Dataset Improving Image Classification}
+    \centering
+    \includegraphics[width=0.8\linewidth]{syn_aug_results.png}
     
-\begin{frame}[allowframebreaks]{References}
-  \printbibliography
-\end{frame}
+    % \vspace{0.5em}
+    
+    \scriptsize
+    Synthetic text-image datasets generated by generative models can significantly improve image classification performance, as demonstrated in~\parencite{heSYNTHETICDATAGENERATIVE2022}.
+    \bottomleftrefs
+  \end{frame}
+\end{refsection}
+
+\begin{refsection}
+  \begin{frame}{xBD: A Large-Scale Disaster Damage Dataset}
+    \centering
+    \includegraphics[width=0.85\linewidth]{xbd_samples.png}
+    
+    \vspace{0.5em}
+    \scriptsize
+    Pre-disaster imagery (top) and post-disaster imagery (bottom). From left to right: Hurricane Harvey; Joplin tornado; Lower Puna volcanic eruption; Sunda Strait tsunami. Imagery from DigitalGlobe.\\
+    \textbf{xBD}~\parencite{guptaCreatingXBDDataset2019}
+    \bottomleftrefs
+  \end{frame}
+\end{refsection}
+
+\begin{refsection}
+  \begin{frame}{xBD: Global Coverage of Disaster Types}
+    \centering
+    \includegraphics[width=0.85\linewidth]{xbd_global.png}
+    
+    \vspace{0.5em}
+    \scriptsize
+    Disaster types and disasters represented in xBD around the world.\\
+    \textbf{xBD}~\parencite{guptaCreatingXBDDataset2019}
+    \bottomleftrefs
+  \end{frame}
+\end{refsection}
+
+\begin{refsection}
+  \begin{frame}{Baseline Models for Scene Classification and Super-Resolution}
+    \textbf{Scene Image Classification:}
+    \begin{itemize}
+      \item \textbf{CLIP}~\parencite{radfordLearningTransferableVisual2021}
+      \item \textbf{RemoteCLIP}~\parencite{liuRemoteCLIPVisionLanguage2024}
+      \item \textbf{Git-RSCLIP}~\parencite{text2earth2025}
+    \end{itemize}
+    \bottomleftrefs
+  \end{frame}
+  \end{refsection}
+
+  %--- Slide: Datasets for Text-to-Image Generation ---
+\begin{refsection}
+  \begin{frame}{Additonal Datasets for Text-to-Image Generation}
+    \textbf{Text-to-Image Generation:}
+    \begin{itemize}
+      \item \textbf{RSICD}~\parencite{lu2017exploring}: Remote Sensing Image Captioning Dataset with 10,921 images and five captions per image.
+      \item \textbf{RSICap}~\parencite{hu2023rsgpt}: High-quality dataset with 2,585 human-annotated image-caption pairs.
+      \item \textbf{UCM-Captions}~\parencite{qu2016deep}: Derived from the UC Merced Land Use Dataset, containing 2,100 images with five captions each.
+    \end{itemize}
+    \bottomleftrefs
+  \end{frame}
+\end{refsection}
+
+\begin{refsection}
+  \begin{frame}[plain]
+    \vfill
+    \centering
+    {\Huge \textbf{Appendix}}
+    \vfill
+  \end{frame}
+\end{refsection}
+
+\begin{refsection}
+  \begin{frame}{Generative Modeling}
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.8\linewidth]{learning_to_generate_data.png}
+      \caption{\scriptsize Illustration of generative modeling~\parencite{CVPR2023Tutorial}.}
+    \end{figure}
+    \bottomleftrefs
+  \end{frame}
+  \end{refsection}
+  
+  % --- Slide 2: Timeline of Generative Models ---
+  \begin{refsection}
+  \begin{frame}{Timeline of Generative Models}
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.95\linewidth]{genai_timeline.png}
+      \caption{\scriptsize Timeline of key developments in generative models~\parencite{dengPPTAdvancedNueralNetwork2024}.}
+    \end{figure}
+    \bottomleftrefs
+  \end{frame}
+  \end{refsection}
+  
+  
+  
+  \begin{refsection}
+  \begin{frame}{Background: Diffusion Models}
+  
+    \begin{figure}
+      \begin{minipage}{0.95\linewidth}
+        \footnotesize
+        \textbf{Denoising diffusion models consist of two processes:}
+        \begin{itemize}
+          \item A forward diffusion process that gradually adds noise to the input.
+          \item A reverse denoising process that learns to generate data by denoising.
+        \end{itemize}
+      \end{minipage}
+      \vspace{2em}
+  
+      \centering
+      \includegraphics[width=1.0\linewidth]{diffusion_high_level.png}
+  
+      \caption[]{\scriptsize Diffusion models generate data through iterative denoising~\parencite{sohl2015deep,ho2020denoising}.}
+    \end{figure}
+  
+    \bottomleftrefs
+  \end{frame}
+  \end{refsection}
+  
+  % --- Slide 4: Preliminaries of Diffusion Models ---
+  \begin{refsection}
+  \begin{frame}{Diffusion Models: Forward and Reverse Processes}
+    \footnotesize
+    \textbf{Forward (Diffusion) Process:}
+    \begin{align*}
+      q(\mathbf{x}_t \mid \mathbf{x}_{t-1}) &= \mathcal{N}(\mathbf{x}_t; \sqrt{1-\beta_t}\,\mathbf{x}_{t-1}, \beta_t \mathbf{I}) \\
+      q(\mathbf{x}_{1:T} \mid \mathbf{x}_0) &= \prod_{t=1}^T q(\mathbf{x}_t \mid \mathbf{x}_{t-1}) \\
+      &\text{Equivalently,  } 
+      \mathbf{x}_t = \sqrt{\bar{\alpha}_t}\,\mathbf{x}_0 + \sqrt{1-\bar{\alpha}_t}\,\boldsymbol{\epsilon}, \quad \boldsymbol{\epsilon} \sim \mathcal{N}(\mathbf{0}, \mathbf{I})
+    \end{align*}
+  
+    \footnotesize
+    \textbf{Reverse (Denoising) Process:}
+    \begin{align*}
+      p_\theta(\mathbf{x}_{t-1} \mid \mathbf{x}_t) &= \mathcal{N}(\mathbf{x}_{t-1}; \boldsymbol{\mu}_\theta(\mathbf{x}_t, t), \Sigma_\theta(\mathbf{x}_t, t)) \\
+      p_\theta(\mathbf{x}_{0:T}) &= p(\mathbf{x}_T) \prod_{t=1}^T p_\theta(\mathbf{x}_{t-1} \mid \mathbf{x}_t)
+    \end{align*}
+    \scriptsize
+    where $\mathbf{x}_0$ is the data, $\beta_t$ is the noise schedule, and $\bar{\alpha}_t = \prod_{s=1}^t (1-\beta_s)$. $p(\mathbf{x}_T) = \mathcal{N}(\mathbf{0}, \mathbf{I})$.
+  
+    \scriptsize
+    \textbf{Diffusion models generate data by learning to reverse a gradual noising process.}~\parencite{sohl2015deep,ho2020denoising}
+    \bottomleftrefs
+  \end{frame}
+  \end{refsection}
+  
+  \begin{refsection}
+  \begin{frame}{Diffusion Models: Training and Inference}
+    \footnotesize
+    \textbf{Training Objective:}
+    \begin{align*}
+      \mathcal{L}_{\mathrm{simple}} = \mathbb{E}_{\mathbf{x}_0, \boldsymbol{\epsilon}, t} \left[ \left\| \boldsymbol{\epsilon} - \boldsymbol{\epsilon}_\theta(\sqrt{\bar{\alpha}_t}\mathbf{x}_0 + \sqrt{1-\bar{\alpha}_t}\boldsymbol{\epsilon}, t) \right\|^2 \right]
+    \end{align*}
+    where $\boldsymbol{\epsilon} \sim \mathcal{N}(\mathbf{0}, \mathbf{I})$, $\bar{\alpha}_t = \prod_{s=1}^t (1-\beta_s)$.
+  
+    \vspace{0.5em}
+    \textbf{Inference (Sampling):}
+    \begin{itemize}
+      \item Start from pure noise: $\mathbf{x}_T \sim \mathcal{N}(\mathbf{0}, \mathbf{I})$
+      \item For $t = T, \ldots, 1$:
+        \begin{itemize}
+          \item Predict noise: $\boldsymbol{\epsilon}_\theta(\mathbf{x}_t, t)$
+          \item Compute mean: $\boldsymbol{\mu}_\theta(\mathbf{x}_t, t)$
+          \item Sample: $\mathbf{x}_{t-1} \sim \mathcal{N}(\boldsymbol{\mu}_\theta(\mathbf{x}_t, t), \Sigma_\theta(\mathbf{x}_t, t))$
+        \end{itemize}
+      \item Repeat until $\mathbf{x}_0$ (generated sample)
+    \end{itemize}
+  
+    \vspace{0.5em}
+    \scriptsize
+    \textbf{Training:} Minimize the simplified objective~\parencite{ho2020denoising}.\\
+    \textbf{Inference:} Iteratively denoise from random noise to generate data.
+    \bottomleftrefs
+  \end{frame}
+  \end{refsection}
+  
+  %--- Slide 5: Application in Remote Sensing Image Generation: DiffusionSat, CRS-Diff, Text2Earth ---
+  
+  \begin{refsection}
+    \begin{frame}{Application in Remote Sensing Image Generation: Text2Earth}
+      \begin{figure}
+        \centering
+        \includegraphics[width=0.9\linewidth]{text2earth.png}
+        \caption[]{\scriptsize Text2Earth: Foundation model for text-driven Earth observation~\parencite{text2earth2025}.}
+      \end{figure}
+      \bottomleftrefs
+    \end{frame}
+  \end{refsection}
+  
+  \begin{refsection}
+    \begin{frame}{Text2Earth: Example Results}
+      \begin{figure}
+        \centering
+        \includegraphics[width=0.9\linewidth]{text2earth_results.png}
+        \caption[]{\scriptsize Example results generated by Text2Earth~\parencite{text2earth2025}.}
+      \end{figure}
+      \bottomleftrefs
+    \end{frame}
+  \end{refsection}
+  
+  \begin{refsection}
+  \begin{frame}{Application in Remote Sensing Image Generation: CRS-Diff}
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.9\linewidth]{crsdiff.png}
+      \caption[]{\scriptsize CRS-Diff: Controllable remote sensing image generation framework~\parencite{tang2024crsdiff}.}
+    \end{figure}
+    \bottomleftrefs
+  \end{frame}
+  \end{refsection}
+  
+  \begin{refsection}
+  \begin{frame}{CRS-Diff: Example Results}
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.9\linewidth]{crsdiff_results.png}
+      \caption[]{\scriptsize Example results generated by CRS-Diff~\parencite{tang2024crsdiff}.}
+    \end{figure}
+    \bottomleftrefs
+  \end{frame}
+  \end{refsection}
+  
+  
+  %--- Slide 6a: DiffusionSat Framework ---
+  \begin{refsection}
+  \begin{frame}{DiffusionSat: Framework Overview}
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.9\linewidth]{diffusionsat.png}
+      \caption[]{\scriptsize DiffusionSat: A generative foundation model for satellite imagery~\parencite{diffusionset2024}.}
+    \end{figure}
+    \bottomleftrefs
+  \end{frame}
+  \end{refsection}
+  
+  %--- Slide 6b: DiffusionSat for Super-Resolution ---
+  \begin{refsection}
+  \begin{frame}{DiffusionSat: Super-Resolution Results}
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.9\linewidth]{diffusionsat_sr_results.png}
+      \caption[]{\scriptsize Example results: DiffusionSat for multi-spectral super-resolution~\parencite{diffusionset2024}.}
+    \end{figure}
+    \bottomleftrefs
+  \end{frame}
+  \end{refsection}
+  
+  %--- Slide 6c: DiffusionSat for Inpainting ---
+  \begin{refsection}
+  \begin{frame}{DiffusionSat: Inpainting Results}
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.9\linewidth]{diffusionsat_inpainting_results.png}
+      \caption[]{\scriptsize Example results: DiffusionSat for remote sensing image inpainting~\parencite{diffusionset2024}.}
+    \end{figure}
+    \bottomleftrefs
+  \end{frame}
+  \end{refsection}
