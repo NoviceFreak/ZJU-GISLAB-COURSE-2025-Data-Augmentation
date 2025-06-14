@@ -117,14 +117,15 @@
 
 \begin{refsection}
   \begin{frame}{Generative Models for Data Augmentation}
-    \begin{figure}
-      \centering
-      \includegraphics[height=0.6\textheight]{satsyn.png}
-      
-      \vspace{0.5em}
-      \caption{\scriptsize SatSyn~\parencite{tokerSatSynthAugmentingImageMask2024} proposes a generative model (diffusion model) to generate both images and corresponding masks for satellite segmentation. The synthetic dataset is used for data augmentation, yielding significant quantitative improvements in satellite semantic segmentation compared to other data augmentation methods.}
-    \end{figure}
-
+    \begin{minipage}{0.7\linewidth}
+      % \centering
+      \includegraphics[width=0.9\linewidth]{satsyn.png}
+    \end{minipage}%
+    \hfill
+    \begin{minipage}{0.3\linewidth}
+      \scriptsize
+      SatSyn~\parencite{tokerSatSynthAugmentingImageMask2024} proposes a generative model (diffusion model) to generate both images and corresponding masks for satellite segmentation. The synthetic dataset is used for data augmentation, yielding significant quantitative improvements in satellite semantic segmentation compared to other data augmentation methods.
+    \end{minipage}
     \bottomleftrefs
   \end{frame}
 \end{refsection}
@@ -169,6 +170,20 @@
 \end{refsection}
 
 \begin{refsection}
+  \begin{frame}{Project Framework Overview}
+    \centering
+    % \includegraphics[width=0.85\linewidth]{project_framework.png}
+    
+    \vspace{0.5em}
+    \scriptsize
+    Project - \textbf{Explore whether generated images can benefit image classification} \\
+    \textbf{Project Framework:} The overall workflow of our project, including data collection, generative model training, synthetic data generation, and downstream evaluation for image recognition tasks. This framework highlights the integration of remote sensing datasets, generative models (e.g., diffusion models), and evaluation pipelines for benchmarking synthetic data utility.
+    \bottomleftrefs
+  \end{frame}
+\end{refsection}
+
+
+\begin{refsection}
   \begin{frame}{Baseline Models for Scene Classification}
     \textbf{Scene Image Classification:}
     \begin{itemize}
@@ -182,19 +197,7 @@
   \end{frame}
   \end{refsection}
 
-  %--- Slide: Datasets for Text-to-Image Generation ---
-\begin{refsection}
-  \begin{frame}{Additonal Text-Image Remote Sensing Datasets}
-    \textbf{Text-to-Image Generation:}
-    \begin{itemize}
-      \item \textbf{RSICD}~\parencite{lu2017exploring}: Remote Sensing Image Captioning Dataset with 10,921 images and five captions per image.
-      \item \textbf{RSICap}~\parencite{hu2023rsgpt}: High-quality dataset with 2,585 human-annotated image-caption pairs.
-      \item \textbf{UCM-Captions}~\parencite{qu2016deep}: Derived from the UC Merced Land Use Dataset, containing 2,100 images with five captions each.
-      \item \textbf{RESISC45}~\parencite{Cheng2017}: It is a publicly available benchmark for REmote Sensing Image Scene Classification (RESISC), created by Northwestern Polytechnical University (NWPU). This data set contains 31 500 images, covering 45 scene classes with 700 images in each class.
-    \end{itemize}
-    \bottomleftrefs
-  \end{frame}
-\end{refsection}
+
 
 \begin{refsection}
   \begin{frame}[plain]
@@ -204,6 +207,20 @@
     \vfill
   \end{frame}
 \end{refsection}
+
+  %--- Slide: Datasets for Text-to-Image Generation ---
+  \begin{refsection}
+    \begin{frame}{Additonal Text-Image Remote Sensing Datasets}
+      \textbf{Text-to-Image Generation:}
+      \begin{itemize}
+        \item \textbf{RSICD}~\parencite{lu2017exploring}: Remote Sensing Image Captioning Dataset with 10,921 images and five captions per image.
+        \item \textbf{RSICap}~\parencite{hu2023rsgpt}: High-quality dataset with 2,585 human-annotated image-caption pairs.
+        \item \textbf{UCM-Captions}~\parencite{qu2016deep}: Derived from the UC Merced Land Use Dataset, containing 2,100 images with five captions each.
+        \item \textbf{RESISC45}~\parencite{Cheng2017}: It is a publicly available benchmark for REmote Sensing Image Scene Classification (RESISC), created by Northwestern Polytechnical University (NWPU). This data set contains 31 500 images, covering 45 scene classes with 700 images in each class.
+      \end{itemize}
+      \bottomleftrefs
+    \end{frame}
+  \end{refsection}
 
 \begin{refsection}
   \begin{frame}{Generative Modeling}
