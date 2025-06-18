@@ -30,9 +30,9 @@ conda activate img-edit-aug
 pip install torch torchvision transformers accelerate datasets
 ```
 
-⸻
+---
 
-3. Repository Structure
+## 3. Repository Structure
 
 ```
 ├── data/                        # real, synthetic, mixed, test
@@ -46,9 +46,9 @@ pip install torch torchvision transformers accelerate datasets
 └── README.md                    # (this file)
 ```
 
-⸻
+---
 
-4. Image Generation (src/generate_images.py)
+## 4. Image Generation (src/generate_images.py)
 
 Option A — Local pre-trained editor (provided by TAs)
 
@@ -74,14 +74,15 @@ python src/generate_images.py \
 
 The script writes edited images to data/synthetic/ using the same folder hierarchy as the originals.
 
-⸻
+---
 
-5. Model Training (src/train_model.py)
+## 5. Model Training (src/train_model.py)
 
-Variant flag	Training data used
-real	data/real/ only
-synthetic	data/synthetic/ only
-mixed	concatenation of data/real/ + data/synthetic/
+| Variant flag | Training data used |
+|--------------|-------------------|
+| real | data/real/ only |
+| synthetic | data/synthetic/ only |
+| mixed | concatenation of data/real/ + data/synthetic/ |
 
 Example (mixed data, ResNet-50):
 
@@ -94,9 +95,9 @@ python src/train_model.py \
   --save_path checkpoints/classifier_mixed.pt
 ```
 
-⸻
+---
 
-6. Inference (src/inference.py)
+## 6. Inference (src/inference.py)
 
 ```
 python src/inference.py \
@@ -105,9 +106,9 @@ python src/inference.py \
   --out predictions.json
 ```
 
-⸻
+---
 
-7. Evaluation (src/evaluate.py)
+## 7. Evaluation (src/evaluate.py)
 
 ```
 python src/evaluate.py \
@@ -117,32 +118,34 @@ python src/evaluate.py \
 
 Metrics reported: Top-1 accuracy, Top-5 accuracy, precision, recall, F1.
 
-⸻
+---
 
-8. Experiments & Reporting
+## 8. Experiments & Reporting
 
 Design four complementary studies and record your findings in the tables provided below.
 For each experiment, run three seeds (e.g. --seed 0 1 2) and report the mean ± std.
 
-8.1 Data-Mix Ablation
+### 8.1 Data-Mix Ablation
 
-Training Data	Top-1 Acc (%)	Top-5 Acc (%)
-Real only		
-Synthetic only		
-Real + Synthetic (Mixed)		
+| Training Data | Top-1 Acc (%) | Top-5 Acc (%) |
+|---------------|---------------|---------------|
+| Real only |  |  |
+| Synthetic only |  |  |
+| Real + Synthetic (Mixed) |  |  |
 
 Run the three --variant settings described in §5.
 
-⸻
+---
 
-8.2 Pre-trained Model Size Scaling
+### 8.2 Pre-trained Model Size Scaling
 
 Use a single architecture family (e.g. Vision Transformer) at different parameter counts.
 
-Model (ViT)	Params (M)	Top-1 Acc (%)	Top-5 Acc (%)
-vit_b16	~86 M		
-vit_l16	~304 M		
-vit_h14	~632 M		
+| Model (ViT) | Params (M) | Top-1 Acc (%) | Top-5 Acc (%) |
+|-------------|-----------|---------------|---------------|
+| vit_b16 | ~86 M |  |  |
+| vit_l16 | ~304 M |  |  |
+| vit_h14 | ~632 M |  |  |
 
 Example command:
 
@@ -156,30 +159,32 @@ python src/train_model.py \
 
 Repeat for vit_l16 and vit_h14.
 
-⸻
+---
 
-8.3 Alternative Architecture Choice
+### 8.3 Alternative Architecture Choice
 
 Compare four architecture types with roughly similar parameter budgets.
 
-Architecture	Params (M)	Top-1 Acc (%)	Top-5 Acc (%)
-ResNet-50	26 M		
-ConvNeXt-T	29 M		
-EfficientNet-B4	19 M		
-ViT-B/16	86 M		
+| Architecture | Params (M) | Top-1 Acc (%) | Top-5 Acc (%) |
+|--------------|-----------|---------------|---------------|
+| ResNet-50 | 26 M |  |  |
+| ConvNeXt-T | 29 M |  |  |
+| EfficientNet-B4 | 19 M |  |  |
+| ViT-B/16 | 86 M |  |  |
 
 Specify the architecture via --model (names as in timm or transformers).
 
-⸻
+---
 
-8.4 Training Data-Samples Scaling
+### 8.4 Training Data-Samples Scaling
 
 Hold the model fixed (pick your best from 8.3) and vary how much data you use.
 
-Data Used	Real Images	Synthetic Images	Total	Top-1 Acc (%)	Top-5 Acc (%)
-25 %					
-50 %					
-100 %					
+| Data Used | Real Images | Synthetic Images | Total | Top-1 Acc (%) | Top-5 Acc (%) |
+|----------|-------------|------------------|-------|---------------|---------------|
+| 25 % |  |  |  |  |  |
+| 50 % |  |  |  |  |  |
+| 100 % |  |  |  |  |  |
 
 Control sample size via --max_real N and --max_synth N flags that subsample the loaders.
 
