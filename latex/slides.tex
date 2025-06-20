@@ -4,13 +4,21 @@
   \begin{frame}{Outline}
     \begin{itemize}
       \item 1. Introduction to Image Classification using Deep Learning
-      \item 2. Traditional Data Augmentation Methods
-      \item 3. Generative Models for Data Augmentation
-      \item 4. Remote Sensing Dataset for Diaster Events: xBD
+      \item 2. Data Augmentation Methods
+      \item 3. Remote Sensing Dataset for Diaster Events: xBD
     \end{itemize}
     \begin{itemize}
       \item Project - \textbf{Explore whether generated images can benefit image classification}
     \end{itemize}
+  \end{frame}
+\end{refsection}
+
+\begin{refsection}
+  \begin{frame}
+    \centering
+    \vspace{2.5cm}
+    {\LARGE \textbf{Introduction to Image Classification}\\[0.5em]
+    \textbf{using Deep Learning}}
   \end{frame}
 \end{refsection}
 
@@ -43,6 +51,8 @@
     \bottomleftrefs
   \end{frame}
 \end{refsection}
+
+
 
 \begin{refsection}
   \begin{frame}{Architecture Evolution of Image Classification}
@@ -80,69 +90,85 @@
   \end{frame}
 \end{refsection}
 
-% \begin{refsection}
-%   \begin{frame}{RemoteCLIP: Vision-Language Foundation Model for Remote Sensing}
-%     \begin{figure}
-%       \centering
-%       \includegraphics[width=0.8\linewidth]{remoteclip.png}
-%       \caption{\scriptsize RemoteCLIP~\parencite{liuRemoteCLIPVisionLanguage2024}: A Vision-Language Foundation Model for Remote Sensing.}
-%     \end{figure}
-%     \bottomleftrefs
-%   \end{frame}
-% \end{refsection}
-
 \begin{refsection}
   \begin{frame}{Image Classification Dataset: RESISC45}
     \begin{figure}
       \centering
-      \includegraphics[width=0.7\linewidth]{RESISC45_part.png}
+      \includegraphics[width=0.95\linewidth]{RESISC45_part2.png}
     \end{figure}
     \scriptsize
-    Example images from the RESISC45 remote sensing scene classification dataset~\parencite{Cheng2017}.
+    We display 2 example images for each class from the NWPU-RESISC45~\parencite{Cheng2017}, a remote sensing scene classification dataset which consists of 31500 remote sensing images divided into 45 scene classes. Each class includes 700 images with a size of 256 × 256 pixels in RGB.
     \bottomleftrefs
   \end{frame}
 \end{refsection}
 
 \begin{refsection}
-  \begin{frame}{Traditional Data Augmentation Methods}
-    \begin{itemize}
-      \item \textbf{Geometric Transformations:} \textbf{Rotation}, \textbf{Flipping} (horizontal/vertical), \textbf{Scaling}, \textbf{Translation}, \textbf{Cropping}
-      \item \textbf{Color Jittering:} Adjusting brightness, contrast, saturation, and hue
-      \item \textbf{Noise Injection:} Adding random noise to images
-      \item \textbf{Cutout}~\parencite{devriesImprovedRegularizationConvolutional2017}
-      \item \textbf{CutMix}~\parencite{yunCutMixRegularizationStrategy2019}
-      \item \textbf{Copy-Paste}~\parencite{ghiasiSimpleCopyPasteStrong2021}
-    \end{itemize}
-    There is also a comprehensive study entitled 'How to train your ViT? Data, Augmentation,  and Regularization in Vision Transformers'~\parencite{steinerHowTrainYour2022}.
+  \begin{frame}{CLIP for Image Classification}
+    \begin{figure}
+      \centering
+      \includegraphics[width=1.0\linewidth]{clip.png}
+      \caption{\scriptsize Summary of OpenAI CLIP ViT~\parencite{radfordLearningTransferableVisual2021}. Left: Training. Right: Inference. }
+    \end{figure}
     \bottomleftrefs
   \end{frame}
 \end{refsection}
 
 \begin{refsection}
-  \begin{frame}{Generative Models for Data Augmentation}
-    \begin{minipage}{0.7\linewidth}
-      % \centering
-      \includegraphics[width=0.9\linewidth]{satsyn.png}
-    \end{minipage}%
-    \hfill
-    \begin{minipage}{0.3\linewidth}
-      \scriptsize
-      SatSyn~\parencite{tokerSatSynthAugmentingImageMask2024} proposes a generative model (diffusion model) to generate both images and corresponding masks for satellite segmentation. The synthetic dataset is used for data augmentation, yielding significant quantitative improvements in satellite semantic segmentation compared to other data augmentation methods.
-    \end{minipage}
-    \bottomleftrefs
-  \end{frame}
-\end{refsection}
-
-\begin{refsection}
-  \begin{frame}{Generated Text-Image Dataset Improving Image Classification}
+  \begin{frame}
     \centering
-    \includegraphics[width=0.8\linewidth]{syn_aug_results.png}
-    
-    % \vspace{0.5em}
+    \vspace{2.5cm}
+    {\LARGE \textbf{Data Augmentation Methods}}
+  \end{frame}
+\end{refsection}
+
+\begin{refsection}
+  \begin{frame}{Traditional vs. Modern Data Augmentation Methods}
+    \textbf{Classic Methods:}
+    \begin{itemize}
+      \item \textbf{Geometric Transformations:} Rotation, Flipping, Scaling, Translation, Cropping
+    \end{itemize}
+    \textbf{Modern Methods:}
+
+    \centering
+    \includegraphics[width=0.7\linewidth]{aug_new_methods.png}
+
+    \scriptsize
+    Illustration of modern augmentation methods. From Left to Right: Mixup~\parencite{zhangMixupEMPIRICALRISK2018}, Cutout~\parencite{devriesImprovedRegularizationConvolutional2017}, and CutMix~\parencite{yunCutMixRegularizationStrategy2019}.
+
+    \bottomleftrefs
+  \end{frame}
+\end{refsection}
+
+\begin{refsection}
+  \begin{frame}{Using Generative Model for Synthetic Dataset for Data Augmentation}
+    \begin{minipage}{0.65\linewidth}
+      \centering
+      \includegraphics[width=0.95\linewidth]{text2earth.png}
+      % \vspace{0.5em}
+      
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.33\linewidth}
+      \centering
+      \includegraphics[width=1.0\linewidth]{text2earth_results2.png}
+      % \vspace{0.5em}
+      
+    \end{minipage}
+    \vspace{1em}
     
     \scriptsize
-    Synthetic text-image datasets generated by generative models can significantly improve image classification performance, as demonstrated in~\parencite{heSYNTHETICDATAGENERATIVE2022}.
+    \textbf{Left:} Text2Earth~\parencite{text2earth2025}, a foundation model for text-driven remote sensing image generation observation. \textbf{Right:} Example results generated by Text2Earth. 
+    Generative models such as Text2Earth can be used to create synthetic remote sensing images, which can augment real datasets for tasks like image scene classification.
     \bottomleftrefs
+  \end{frame}
+\end{refsection}
+
+\begin{refsection}
+  \begin{frame}
+    \centering
+    \vspace{2.5cm}
+    {\LARGE \textbf{Remote Sensing Temporal Dataset}\\[0.5em]
+    \textbf{for Disaster Events: xBD}}
   \end{frame}
 \end{refsection}
 
@@ -169,6 +195,14 @@
     Disaster types and disasters represented in xBD around the world.\\
     \textbf{xBD}~\parencite{guptaCreatingXBDDataset2019}
     \bottomleftrefs
+  \end{frame}
+\end{refsection}
+
+\begin{refsection}
+  \begin{frame}
+    \centering
+    \vspace{2.5cm}
+    {\LARGE \textbf{Project: Explore whether generated images can benefit image classification}}
   \end{frame}
 \end{refsection}
 
@@ -290,6 +324,49 @@
     \centering
     {\Huge \textbf{Appendix}}
     \vfill
+  \end{frame}
+\end{refsection}
+
+\begin{refsection}
+  \begin{frame}{Traditional Data Augmentation Methods}
+    \begin{itemize}
+      \item \textbf{Geometric Transformations:} \textbf{Rotation}, \textbf{Flipping} (horizontal/vertical), \textbf{Scaling}, \textbf{Translation}, \textbf{Cropping}
+      \item \textbf{Color Jittering:} Adjusting brightness, contrast, saturation, and hue
+      \item \textbf{Noise Injection:} Adding random noise to images
+      \item \textbf{Cutout}~\parencite{devriesImprovedRegularizationConvolutional2017}
+      \item \textbf{CutMix}~\parencite{yunCutMixRegularizationStrategy2019}
+      \item \textbf{Copy-Paste}~\parencite{ghiasiSimpleCopyPasteStrong2021}
+    \end{itemize}
+    There is also a comprehensive study entitled 'How to train your ViT? Data, Augmentation,  and Regularization in Vision Transformers'~\parencite{steinerHowTrainYour2022}.
+    \bottomleftrefs
+  \end{frame}
+\end{refsection}
+
+\begin{refsection}
+  \begin{frame}{Generative Models for Data Augmentation}
+    \begin{minipage}{0.7\linewidth}
+      % \centering
+      \includegraphics[width=0.9\linewidth]{satsyn.png}
+    \end{minipage}%
+    \hfill
+    \begin{minipage}{0.3\linewidth}
+      \scriptsize
+      SatSyn~\parencite{tokerSatSynthAugmentingImageMask2024} proposes a generative model (diffusion model) to generate both images and corresponding masks for satellite segmentation. The synthetic dataset is used for data augmentation, yielding significant quantitative improvements in satellite semantic segmentation compared to other data augmentation methods.
+    \end{minipage}
+    \bottomleftrefs
+  \end{frame}
+\end{refsection}
+
+\begin{refsection}
+  \begin{frame}{Generated Text-Image Dataset Improving Image Classification}
+    \centering
+    \includegraphics[width=0.8\linewidth]{syn_aug_results.png}
+    
+    % \vspace{0.5em}
+    
+    \scriptsize
+    Synthetic text-image datasets generated by generative models can significantly improve image classification performance, as demonstrated in~\parencite{heSYNTHETICDATAGENERATIVE2022}.
+    \bottomleftrefs
   \end{frame}
 \end{refsection}
 
