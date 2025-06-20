@@ -1,28 +1,31 @@
-# Image-Editing Data Augmentation for Image Classification  
-*Course Project Guide*
+# Image-Editing Data Augmentation for Image Classification
+
+_Course Project Guide_
 
 ---
 
 ## 1. Introduction
+
 Data augmentation broadens the diversity of training samples and helps vision models generalize better.  
 In this project you will:
 
-1. **Generate edited images** from an original image + text-prompt pair using an image-editing model.  
-2. **Augment** a standard image-classification dataset with these synthetic images.  
-3. **Compare** model performance when trained on  
-   * real data only,  
-   * synthetic data only, and  
-   * the combination of both.
+1. **Generate edited images** from an original image + text-prompt pair using an image-editing model.
+2. **Augment** a standard image-classification dataset with these synthetic images.
+3. **Compare** model performance when trained on
+   - real data only,
+   - synthetic data only, and
+   - the combination of both.
 
 ---
 
 ## 2. Prerequisites
-| Requirement | Version / Notes |
-|-------------|-----------------|
-| **Python**  | ≥ 3.9 |
-| **PyTorch** | ≥ 2.0 |
-| **Hugging Face Transformers** | latest stable |
-| **GPU**     | NVIDIA RTX 3090 / 4090 (available on school Linux servers) |
+
+| Requirement                   | Version / Notes                                            |
+| ----------------------------- | ---------------------------------------------------------- |
+| **Python**                    | ≥ 3.9                                                      |
+| **PyTorch**                   | ≥ 2.0                                                      |
+| **Hugging Face Transformers** | latest stable                                              |
+| **GPU**                       | NVIDIA RTX 3090 / 4090 (available on school Linux servers) |
 
 ```bash
 conda create -n img-edit-aug python=3.10
@@ -78,11 +81,11 @@ The script writes edited images to data/synthetic/ using the same folder hierarc
 
 ## 5. Model Training (src/train_model.py)
 
-| Variant flag | Training data used |
-|--------------|-------------------|
-| real | data/real/ only |
-| synthetic | data/synthetic/ only |
-| mixed | concatenation of data/real/ + data/synthetic/ |
+| Variant flag | Training data used                            |
+| ------------ | --------------------------------------------- |
+| real         | data/real/ only                               |
+| synthetic    | data/synthetic/ only                          |
+| mixed        | concatenation of data/real/ + data/synthetic/ |
 
 Example (mixed data, ResNet-50):
 
@@ -127,11 +130,11 @@ For each experiment, run three seeds (e.g. --seed 0 1 2) and report the mean ± 
 
 ### 8.1 Data-Mix Ablation
 
-| Training Data | Top-1 Acc (%) | Top-5 Acc (%) |
-|---------------|---------------|---------------|
-| Real only |  |  |
-| Synthetic only |  |  |
-| Real + Synthetic (Mixed) |  |  |
+| Training Data            | Top-1 Acc (%) | Top-5 Acc (%) |
+| ------------------------ | ------------- | ------------- |
+| Real only                |               |               |
+| Synthetic only           |               |               |
+| Real + Synthetic (Mixed) |               |               |
 
 Run the three --variant settings described in §5.
 
@@ -142,10 +145,10 @@ Run the three --variant settings described in §5.
 Use a single architecture family (e.g. Vision Transformer) at different parameter counts.
 
 | Model (ViT) | Params (M) | Top-1 Acc (%) | Top-5 Acc (%) |
-|-------------|-----------|---------------|---------------|
-| vit_b16 | ~86 M |  |  |
-| vit_l16 | ~304 M |  |  |
-| vit_h14 | ~632 M |  |  |
+| ----------- | ---------- | ------------- | ------------- |
+| vit_b16     | ~86 M      |               |               |
+| vit_l16     | ~304 M     |               |               |
+| vit_h14     | ~632 M     |               |               |
 
 Example command:
 
@@ -165,12 +168,12 @@ Repeat for vit_l16 and vit_h14.
 
 Compare four architecture types with roughly similar parameter budgets.
 
-| Architecture | Params (M) | Top-1 Acc (%) | Top-5 Acc (%) |
-|--------------|-----------|---------------|---------------|
-| ResNet-50 | 26 M |  |  |
-| ConvNeXt-T | 29 M |  |  |
-| EfficientNet-B4 | 19 M |  |  |
-| ViT-B/16 | 86 M |  |  |
+| Architecture    | Params (M) | Top-1 Acc (%) | Top-5 Acc (%) |
+| --------------- | ---------- | ------------- | ------------- |
+| ResNet-50       | 26 M       |               |               |
+| ConvNeXt-T      | 29 M       |               |               |
+| EfficientNet-B4 | 19 M       |               |               |
+| ViT-B/16        | 86 M       |               |               |
 
 Specify the architecture via --model (names as in timm or transformers).
 
@@ -181,10 +184,15 @@ Specify the architecture via --model (names as in timm or transformers).
 Hold the model fixed (pick your best from 8.3) and vary how much data you use.
 
 | Data Used | Real Images | Synthetic Images | Total | Top-1 Acc (%) | Top-5 Acc (%) |
-|----------|-------------|------------------|-------|---------------|---------------|
-| 25 % |  |  |  |  |  |
-| 50 % |  |  |  |  |  |
-| 100 % |  |  |  |  |  |
+| --------- | ----------- | ---------------- | ----- | ------------- | ------------- |
+| 25 %      |             |                  |       |               |               |
+| 50 %      |             |                  |       |               |               |
+| 100 %     |             |                  |       |               |               |
 
 Control sample size via --max_real N and --max_synth N flags that subsample the loaders.
 
+## References
+
+- [CLIP Model Card and Usage](https://hf-mirror.com/openai/clip-vit-base-patch16)
+- [SigLIP2 Model Card and Usage](https://hf-mirror.com/google/siglip2-base-patch16-224)
+- [HuggingFace Transformers Contrastive Image-Text Example](https://github.com/huggingface/transformers/blob/main/examples/pytorch/contrastive-image-text/README.md)
