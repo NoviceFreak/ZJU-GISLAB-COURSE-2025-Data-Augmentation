@@ -20,6 +20,14 @@
   sorting=none
 ]{biblatex}
 \addbibresource{references.bib}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  citecolor=blue,
+  urlcolor=blue
+}
+
 % --- Helper: left-bottom reference box ---
 \renewcommand*{\bibfont}{\fontsize{5}{6}\selectfont}
 \newcommand{\bottomleftrefs}{%
@@ -67,18 +75,29 @@
 % Helper macro: define per-slide bibliography (reset on every slide)
 \newcommand{\slidebib}{}
 
-%--- Metadata ---
-\title[]{生成模型合成数据已准备好用于图像识别了吗？}
-\subtitle{GISLab 2025年暑期短课程}
-\author[Sakura]{陈振源}
-\institute[ZJU]{浙江大学地球科学学院}
-\date{2025\\\small\texttt{bili\_sakura@zju.edu.cn}}
+%--- 元数据 ---
+\title[]{AI生成的图像能帮助图像识别吗？}
+\subtitle{GISLab暑期短训班 2025}
+\author[Sakura]{\href{https://bili-sakura.github.io/}{陈振源}}
+\institute[浙大]{浙江大学地球科学学院}
+\date{2025\\\small\href{mailto:bili_sakura@zju.edu.cn}{bili\_sakura@zju.edu.cn}}
 
 \begin{document}
 
-%--- Cover slide ---
+%--- 封面 ---
 \begin{frame}
-  \titlepage
+  \centering
+  {\usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle\par}
+  \vspace{0.5em}
+  {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par}
+  \vspace{1.5em}
+  \includegraphics[width=0.22\linewidth,clip,keepaspectratio]{profile_new.jpeg}
+  \vspace{1.2em}
+  
+  {\usebeamerfont{author}\usebeamercolor[fg]{author}\insertauthor\par}
+  {\usebeamerfont{institute}\usebeamercolor[fg]{institute}\insertinstitute\par}
+  \vspace{1em}
+  {\usebeamerfont{date}\usebeamercolor[fg]{date}\insertdate\par}
 \end{frame}
 
 \input{slides_zh}

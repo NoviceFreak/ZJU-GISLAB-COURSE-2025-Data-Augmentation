@@ -1,36 +1,299 @@
 
-%--- Slide 1: Outline ---
-\begin{refsection}
-  \begin{frame}{Outline}
-    \begin{itemize}
-      \item 1. Introduction to Image Classification using Deep Learning
-      \item 2. Data Augmentation Methods
-      \item 3. Remote Sensing Dataset for Diaster Events: xBD
-    \end{itemize}
-    \begin{itemize}
-      \item Project - \textbf{Explore whether generated images can benefit image classification}
-    \end{itemize}
-  \end{frame}
-\end{refsection}
+%--- Outline ---
+\begin{frame}{Outline}
+  \begin{itemize}
+    \item What is Image Classification?
+    \item How Can We Improve It? (Data Augmentation)
+    \item Real-World Example: Disaster Images
+    \item Project: Can AI-Generated Images Help?
+  \end{itemize}
+\end{frame}
 
+% \begin{refsection}
+%   \begin{frame}
+%     \centering
+%     \vspace{2.5cm}
+%     {\LARGE \textbf{Introduction to Image Classification}\\[0.5em]
+%     \textbf{using Deep Learning}}
+%   \end{frame}
+% \end{refsection}
+
+
+\begin{frame}{What is Image Classification?}
+  \begin{itemize}
+    \item Computers learn to recognize what’s in a picture (e.g., cat, dog, airplane).
+    \item We use lots of labeled images to teach the computer.
+    \item Goal: Predict the correct label for new images.
+  \end{itemize}
+  \centering
+  \includegraphics[height=0.6\textheight]{image_classification_idea.png}
+\end{frame}
+
+%--- How Does It Work? ---
 \begin{refsection}
-  \begin{frame}
+\begin{frame}{How Does It Work?}
+  \begin{flushleft}
+  Neural networks are special computer programs that learn patterns from many example images. Over time, they get better at telling images apart.
+  \end{flushleft}
+  \centering
+  \begin{figure}
     \centering
-    \vspace{2.5cm}
-    {\LARGE \textbf{Introduction to Image Classification}\\[0.5em]
-    \textbf{using Deep Learning}}
-  \end{frame}
+    \includegraphics[width=0.6\linewidth]{alexnet.png}
+    \caption[]{\scriptsize Example of a neural network for image classification: AlexNet~\parencite{krizhevskyImageNetClassificationDeep2012}.}
+  \end{figure}
+  \bottomleftrefs
+\end{frame}
 \end{refsection}
 
 
+
+
+%--- Modern Models: CLIP ---
 \begin{refsection}
-  \begin{frame}{Image Classification: Overview}
-    \begin{figure}
+\begin{frame}{Modern Models: CLIP}
+  % \vspace{-0.7em}
+  \begin{itemize}
+    \item CLIP learns to match images and text.
+    \item It can recognize new things by understanding descriptions.
+    \item Useful for many tasks, not just classification.
+  \end{itemize}
+  \centering
+  \begin{figure}
+    \centering
+    \includegraphics[width=0.8\linewidth]{clip.png}
+    \caption[]{\scriptsize Summary of OpenAI CLIP ViT~\parencite{radfordLearningTransferableVisual2021}.}
+  \end{figure}
+  \bottomleftrefs
+\end{frame}
+\end{refsection}
+
+
+
+%--- Section: Data Augmentation ---
+\begin{refsection}
+\begin{frame}
+  \centering
+  \vspace{2.5cm}
+  {\LARGE \textbf{How Can We Improve Image Classification?}\\[0.5em]
+  \textbf{(Data Augmentation)}}
+\end{frame}
+\end{refsection}
+
+%--- Data Augmentation: Why? ---
+\begin{refsection}
+\begin{frame}{Why Use Data Augmentation?}
+  \begin{minipage}{0.48\linewidth}
+    \begin{itemize}
+      \item Sometimes we do not have enough images to train a good model.
+      \item Data augmentation means making new images from existing ones.
+      \item It helps the model learn better and avoid mistakes.
+    \end{itemize}
+  \end{minipage}%
+  \hfill
+  \begin{minipage}{0.48\linewidth}
+    \centering
+    \includegraphics[width=0.95\linewidth]{augreg.png}
+    \scriptsize \\
+    Figure. Adding the right amount of regularization and image augmentation can lead to similar gains as increasing the dataset size by an order of magnitude.~\parencite{steinerHowTrainYour2022}
+  \end{minipage}
+  \bottomleftrefs
+\end{frame}
+\end{refsection}
+
+%--- Data Augmentation: How? ---
+\begin{refsection}
+\begin{frame}{How Do We Augment Data?}
+  \textbf{Classic Methods:}
+  \begin{itemize}
+    \item Flip, rotate, crop, change colors, etc.
+  \end{itemize}
+  \textbf{Modern Methods:}
+  \begin{itemize}
+    \item Mix two images together (Mixup)~\parencite{zhangMixupEMPIRICALRISK2018}.
+    \item Cut and paste parts of images (CutMix)~\parencite{yunCutMixRegularizationStrategy2019}.
+  \end{itemize}
+  \begin{figure}
+    \centering
+    \includegraphics[width=0.5\linewidth]{aug_new_methods.png}
+    \caption[]{\scriptsize Illustration of modern augmentation methods. From Left to Right: Mixup~\parencite{zhangMixupEMPIRICALRISK2018}, Cutout~\parencite{devriesImprovedRegularizationConvolutional2017}, and CutMix~\parencite{yunCutMixRegularizationStrategy2019}.}
+  \end{figure}
+  \bottomleftrefs
+\end{frame}
+\end{refsection}
+
+%--- Example Dataset: RESISC45 ---
+% \begin{refsection}
+%   \begin{frame}{Example Dataset: RESISC45}
+%     \centering
+%     \begin{figure}
+%       \centering
+%       \includegraphics[width=1.0\linewidth]{RESISC45_part2.png}
+%       \caption[]{\scriptsize Example images from the RESISC45 dataset~\parencite{Cheng2017}, which contains 45 scene classes with 700 images each.}
+%     \end{figure}
+%     \bottomleftrefs
+%   \end{frame}
+%   \end{refsection}
+
+%--- Generative Models for Data Augmentation ---
+\begin{refsection}
+\begin{frame}{Using Gen AI to Make New Images}
+  \begin{itemize}
+    \item Generative models can create new, realistic images.
+    \item We can use them to make more training data.
+    \item Example: Give a “before” image and a description, get a new “after” image.
+  \end{itemize}
+  \centering
+  \includegraphics[width=1.0\linewidth]{diffusion_editing.png}
+\end{frame}
+\end{refsection}
+
+%--- Real-World Example: Disaster Images (xBD) ---
+\begin{frame}
+  \centering
+  \vspace{2.5cm}
+  {\LARGE \textbf{Real-World Example: Disaster Images (xBD)}}
+\end{frame}
+
+\begin{refsection}
+  \begin{frame}{xBD: A Large-Scale Disaster Damage Dataset}
+    \begin{minipage}{0.42\linewidth}
       \centering
-      \includegraphics[height=0.6\textheight]{image_classification_idea.png}
-      \caption{\scriptsize Overview of image classification.}
-    \end{figure}
+      \includegraphics[width=1.0\linewidth]{xbd_samples.png}
+      \vspace{0.5em}
+      \scriptsize
+      \textbf{xBD}~\parencite{guptaCreatingXBDDataset2019} is a bi-temporal remote sensing dataset covering 19 distinct disaster events. Pre-disaster imagery (top) and post-disaster imagery (bottom). From left to right: Hurricane Harvey; Joplin tornado; Lower Puna volcanic eruption; Sunda Strait tsunami.
+    \end{minipage}%
+    \hfill
+    \begin{minipage}{0.55\linewidth}
+      \tiny
+      \centering
+      \textbf{Table. 19 Disaster events in xBD.}
+      \begin{tabular}{lll}
+        \hline
+        \textbf{Disaster Type} & \textbf{Disaster Event} & \textbf{Event Date} \\
+        \hline
+        Earthquake & Mexico City earthquake & Sep 19, 2017 \\
+        Wildfire & Portugal wildfires & Jun 17--24, 2017 \\
+        Wildfire & Santa Rosa wildfires & Oct 8--31, 2017 \\
+        Wildfire & Carr wildfire & Jul 23--Aug 30, 2018 \\
+        Wildfire & Woolsey fire & Nov 9--28, 2018 \\
+        Wildfire & Piner fire & Nov 25--Dec 2, 2018 \\
+        Volcano & Lower Puna volcanic eruption & May 23--Aug 14, 2018 \\
+        Volcano & Guatemala Fuego volcanic eruption & Jun 3, 2018 \\
+        Storm & Tuscaloosa, AL tornado & Apr 27, 2011 \\
+        Storm & Joplin, MO tornado & May 22, 2011 \\
+        Storm & Moore, OK tornado & May 20, 2013 \\
+        Storm & Hurricane Matthew & Sep 28--Oct 10, 2016 \\
+        Storm & Hurricane Florence & Sep 10--19, 2018 \\
+        Flooding & Monsoon in Nepal, India, and Bangladesh & Aug 2017 \\
+        Flooding & Hurricane Harvey & Aug 17--Sep 7, 2017 \\
+        Flooding & Hurricane Michael & Oct 7--16, 2018 \\
+        Flooding & Midwest US floods & Jan 3--May 31, 2019 \\
+        Tsunami & Indonesia tsunami & Sep 18, 2018 \\
+        Tsunami & Sunda Strait tsunami & Dec 22, 2018 \\
+        \hline
+      \end{tabular}
+      \vspace{0.5em}
+
+    \end{minipage}
     \bottomleftrefs
+  \end{frame}
+\end{refsection}
+
+%--- Project Section ---
+\begin{frame}
+  \centering
+  \vspace{2.5cm}
+  {\LARGE \textbf{Project: Can AI-Generated Images Help?}}
+\end{frame}
+
+%--- Project: What Will You Do? ---
+\begin{refsection}
+\begin{frame}{Project: What Will You Do?}
+  \begin{itemize}
+    \item Test if adding AI-generated images helps the model learn.
+    \item Try three ways:
+      \begin{itemize}
+        \item Only real images
+        \item Only generated images
+        \item Both real and generated images
+      \end{itemize}
+    \item See which way gives the best results!
+  \end{itemize}
+\end{frame}
+\end{refsection}
+
+%--- Project: Dataset & Image Generation ---
+\begin{refsection}
+\begin{frame}{Project: Dataset Details \& How to Generate Images}
+  \begin{itemize}
+    \item Use 100 real images per disaster type (6 types, 600 images total).
+    \item For each type, generate 100–400 new images using AI.
+    \item Try different mixes: 1:1, 1:2, 1:3, 1:4 (real:generated).
+    \item Use commercial AI models (e.g., GPT-Image-1~\parencite{gptimage1}, Gemini 2.5 Pro~\parencite{geminiteamgoogleGemini25Pushing}, SeedEdit 3.0~\parencite{wang2025seedit}) to generate images.
+    \item Input: a “before” image and a short description (e.g., “make it suffer from flooding”).
+    \item Output: a new, realistic “after” image.
+  \end{itemize}
+  \bottomleftrefs
+\end{frame}
+\end{refsection}
+
+%--- Project: Models & Evaluation ---
+\begin{refsection}
+\begin{frame}{Which Models to Use \& How to Measure Success}
+  \begin{itemize}
+    \item \textbf{Try these models:}
+      \begin{itemize}
+        \item OpenAI CLIP~\parencite{radfordLearningTransferableVisual2021}
+        \item Google SigLip/SigLip2~\parencite{tschannenSigLIP2Multilingual2025,Zhai_2023_ICCV}
+        \item Both of the above use ViT configurations (see \href{https://github.com/huggingface/transformers/blob/main/examples/pytorch/contrastive-image-text/README.md}{\textcolor{blue}{CLIP training example}} and \href{https://github.com/NielsRogge/Transformers-Tutorials/tree/master/VisionTransformer}{\textcolor{blue}{ViT tutorials}}).
+      \end{itemize}
+    \item \textbf{How to measure success:}
+      \begin{itemize}
+        \item \textbf{Accuracy}: \% of correct answers
+        \item \textbf{F1 Score}: balances precision and recall
+        \item \textbf{Confusion Matrix}: shows what gets confused
+      \end{itemize}
+    \item Always test on real images the model hasn’t seen before.
+    \item Make simple bar or line charts to compare results.
+  \end{itemize}
+  \bottomleftrefs
+\end{frame}
+\end{refsection}
+
+%--- Summary / Key Takeaways ---
+% \begin{frame}{Key Takeaways}
+%   \begin{itemize}
+%     \item Image classification helps computers understand pictures.
+%     \item Data augmentation (including AI-generated images) can help models learn better.
+%     \item Your project: test if mixing real and generated images improves results!
+%     \item Simple experiments and clear results are best.
+%   \end{itemize}
+% \end{frame}
+  
+
+% \begin{refsection}
+%   \begin{frame}{Baseline Models for Scene Classification}
+%     \textbf{Scene Image Classification:}
+%     \begin{itemize}
+%       \item \textbf{OpenAI CLIP}~\parencite{radfordLearningTransferableVisual2021}~\href{https://hf-mirror.com/openai/clip-vit-base-patch16}{\textcolor{blue}{- models}}
+%       \item \textbf{RemoteCLIP}~\parencite{liuRemoteCLIPVisionLanguage2024}~\href{https://hf-mirror.com/MVRL/remote-clip-vit-base-patch32}{\textcolor{blue}{- models}}
+%       \item \textbf{Git-RSCLIP}~\parencite{text2earth2025}~\href{https://hf-mirror.com/lcybuaa/Git-RSCLIP-base}{\textcolor{blue}{- models}}
+%     \end{itemize}
+%     All of above follow ViT configuration where we can use following~\href{https://github.com/huggingface/transformers/blob/main/examples/pytorch/contrastive-image-text/README.md}{\textcolor{blue}{(code)}}~for continuing CLIP training or ~\href{https://github.com/NielsRogge/Transformers-Tutorials/tree/master/VisionTransformer}{\textcolor{blue}{(code)}}~ for fine-tuning on classification task.
+%     For more Remote Sensing Foundation Models, ref to ~\href{https://hf-mirror.com/collections/MVRL/remote-sensing-foundation-models-664e8fcd67d8ca8c03f42d00}{\textcolor{purple}{huggingface collection}.}
+%     \bottomleftrefs
+%   \end{frame}
+%   \end{refsection}
+
+
+
+\begin{refsection}
+  \begin{frame}[plain]
+    \vfill
+    \centering
+    {\Huge \textbf{Appendix}}
+    \vfill
   \end{frame}
 \end{refsection}
 
@@ -172,31 +435,7 @@
   \end{frame}
 \end{refsection}
 
-\begin{refsection}
-  \begin{frame}{xBD: A Large-Scale Disaster Damage Dataset}
-    \centering
-    \includegraphics[width=0.85\linewidth]{xbd_samples.png}
-    
-    \vspace{0.5em}
-    \scriptsize
-    Pre-disaster imagery (top) and post-disaster imagery (bottom). From left to right: Hurricane Harvey; Joplin tornado; Lower Puna volcanic eruption; Sunda Strait tsunami. Imagery from DigitalGlobe.\\
-    \textbf{xBD}~\parencite{guptaCreatingXBDDataset2019}
-    \bottomleftrefs
-  \end{frame}
-\end{refsection}
 
-\begin{refsection}
-  \begin{frame}{xBD: Global Coverage of Disaster Types}
-    \centering
-    \includegraphics[width=0.85\linewidth]{xbd_global.png}
-    
-    \vspace{0.5em}
-    \scriptsize
-    Disaster types and disasters represented in xBD around the world.\\
-    \textbf{xBD}~\parencite{guptaCreatingXBDDataset2019}
-    \bottomleftrefs
-  \end{frame}
-\end{refsection}
 
 \begin{refsection}
   \begin{frame}
@@ -247,7 +486,7 @@
       \textbf{Image Generation:}
       \begin{itemize}
         \item We consider generated images as the result of \textbf{text-guided image editing}: for each case, you input a \textbf{pre-event image} and a \textbf{text description} (e.g., "flooded", "collapsed building"), and the model yields a generated (post-event) image.
-        \item Use commercial generative models such as \textbf{GPT-4o Image Generation(GPT-Image-1)}~\parencite{gptimage1}, \textbf{Gemini-2}~\parencite{gemini2}, or \textbf{SeedEdit 3.0}~\parencite{wang2025seedit} to create synthetic images for each disaster class.
+        \item Use commercial generative models such as \textbf{GPT-4o Image Generation(GPT-Image-1)}~\parencite{gptimage1}, \textbf{Gemini-2}~\parencite{geminiteamgoogleGemini25Pushing}, or \textbf{SeedEdit 3.0}~\parencite{wang2025seedit} to create synthetic images for each disaster class.
       \end{itemize}
       \bottomleftrefs
     \end{frame}
@@ -300,32 +539,6 @@
     \bottomleftrefs
   \end{frame}
   \end{refsection}
-  
-
-% \begin{refsection}
-%   \begin{frame}{Baseline Models for Scene Classification}
-%     \textbf{Scene Image Classification:}
-%     \begin{itemize}
-%       \item \textbf{OpenAI CLIP}~\parencite{radfordLearningTransferableVisual2021}~\href{https://hf-mirror.com/openai/clip-vit-base-patch16}{\textcolor{blue}{- models}}
-%       \item \textbf{RemoteCLIP}~\parencite{liuRemoteCLIPVisionLanguage2024}~\href{https://hf-mirror.com/MVRL/remote-clip-vit-base-patch32}{\textcolor{blue}{- models}}
-%       \item \textbf{Git-RSCLIP}~\parencite{text2earth2025}~\href{https://hf-mirror.com/lcybuaa/Git-RSCLIP-base}{\textcolor{blue}{- models}}
-%     \end{itemize}
-%     All of above follow ViT configuration where we can use following~\href{https://github.com/huggingface/transformers/blob/main/examples/pytorch/contrastive-image-text/README.md}{\textcolor{blue}{(code)}}~for continuing CLIP training or ~\href{https://github.com/NielsRogge/Transformers-Tutorials/tree/master/VisionTransformer}{\textcolor{blue}{(code)}}~ for fine-tuning on classification task.
-%     For more Remote Sensing Foundation Models, ref to ~\href{https://hf-mirror.com/collections/MVRL/remote-sensing-foundation-models-664e8fcd67d8ca8c03f42d00}{\textcolor{purple}{huggingface collection}.}
-%     \bottomleftrefs
-%   \end{frame}
-%   \end{refsection}
-
-
-
-\begin{refsection}
-  \begin{frame}[plain]
-    \vfill
-    \centering
-    {\Huge \textbf{Appendix}}
-    \vfill
-  \end{frame}
-\end{refsection}
 
 \begin{refsection}
   \begin{frame}{Traditional Data Augmentation Methods}

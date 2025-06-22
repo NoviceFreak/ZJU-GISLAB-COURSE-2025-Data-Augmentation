@@ -12,6 +12,15 @@
 
 \graphicspath{{figs/}}
 
+% --- Hyperref setup: make citation links blue ---
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  citecolor=blue,
+  urlcolor=blue
+}
+
+
 % --- Biblatex setup ---
 \usepackage[
   backend=biber,
@@ -70,9 +79,9 @@
 \newcommand{\slidebib}{}
 
 %--- Metadata ---
-\title[]{Is synthetic data from generative models ready for image recognition?}
+\title[]{Can AI-Generated Images Help Image Recognition?}
 \subtitle{GISLab Short-Term Course 2025 Summer}
-\author[Sakura]{Zhenyuan Chen}
+\author[Sakura]{\href{https://bili-sakura.github.io/}{Zhenyuan Chen}}
 \institute[ZJU]{School of Earth Science, Zhejiang University}
 \date{2025\\\small\href{mailto:bili_sakura@zju.edu.cn}{bili\_sakura@zju.edu.cn}}
 
@@ -80,7 +89,18 @@
 
 %--- Cover slide ---
 \begin{frame}
-  \titlepage
+  \centering
+  {\usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle\par}
+  \vspace{0.5em}
+  {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par}
+  \vspace{1.5em}
+  \includegraphics[width=0.22\linewidth,clip,keepaspectratio]{profile_new.jpeg}
+  \vspace{1.2em}
+  
+  {\usebeamerfont{author}\usebeamercolor[fg]{author}\insertauthor\par}
+  {\usebeamerfont{institute}\usebeamercolor[fg]{institute}\insertinstitute\par}
+  \vspace{1em}
+  {\usebeamerfont{date}\usebeamercolor[fg]{date}\insertdate\par}
 \end{frame}
 
 \input{slides}
