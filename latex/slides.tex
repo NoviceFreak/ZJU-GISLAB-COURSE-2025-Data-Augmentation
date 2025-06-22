@@ -104,22 +104,44 @@
 \begin{refsection}
 \begin{frame}{How Do We Augment Data?}
   \textbf{Classic Methods:}
-  \begin{itemize}
-    \item Flip, rotate, crop, change colors, etc.
-  \end{itemize}
-  \textbf{Modern Methods:}
-  \begin{itemize}
-    \item Mix two images together (Mixup)~\parencite{zhangMixupEMPIRICALRISK2018}.
-    \item Cut and paste parts of images (CutMix)~\parencite{yunCutMixRegularizationStrategy2019}.
-  \end{itemize}
-  \begin{figure}
-    \centering
-    \includegraphics[width=0.5\linewidth]{aug_new_methods.png}
-    \caption[]{\scriptsize Illustration of modern augmentation methods. From Left to Right: Mixup~\parencite{zhangMixupEMPIRICALRISK2018}, Cutout~\parencite{devriesImprovedRegularizationConvolutional2017}, and CutMix~\parencite{yunCutMixRegularizationStrategy2019}.}
-  \end{figure}
+    \begin{itemize}
+      \item Flip, rotate, crop, change colors, etc.
+    \end{itemize}
+    \textbf{Modern Methods:}
+    \begin{itemize}
+      \item Mix two images together (Mixup)~\parencite{zhangMixupEMPIRICALRISK2018}.
+      \item Cut and paste parts of images (CutMix)~\parencite{yunCutMixRegularizationStrategy2019}.
+    \end{itemize}
+  \begin{minipage}{0.58\linewidth}
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.6\linewidth]{aug_new_methods.png}
+      \caption[]{\scriptsize Illustration of modern augmentation methods. From Left to Right: Mixup~\parencite{zhangMixupEMPIRICALRISK2018}, Cutout~\parencite{devriesImprovedRegularizationConvolutional2017}, and CutMix~\parencite{yunCutMixRegularizationStrategy2019}.}
+    \end{figure}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.4\linewidth}
+    \textbf{Soft Label Example (CutMix):}
+    % \vspace{0.5em}
+    \tiny
+    \begin{equation*}
+      \text{cutmix\_label} = \lambda \cdot \text{label}_A + (1 - \lambda) \cdot \text{label}_B
+    \end{equation*}
+    \vspace{-0.5em}
+    \begin{equation*}
+      \text{Example:} \quad \lambda = 0.5, \quad \text{label}_A = [1, 0], \quad \text{label}_B = [0, 1]
+    \end{equation*}
+    \vspace{-0.5em}
+    \begin{equation*}
+      \text{cutmix\_label} = 0.5 \times [1, 0] + 0.5 \times [0, 1] = [0.5, 0.5]
+    \end{equation*}
+   
+
+  \end{minipage}
   \bottomleftrefs
 \end{frame}
 \end{refsection}
+
 
 %--- Example Dataset: RESISC45 ---
 % \begin{refsection}

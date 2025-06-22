@@ -108,24 +108,46 @@
 
 %--- 数据增强：怎么做？ ---
 \begin{refsection}
-\begin{frame}{我们如何进行数据增强？}
-  \textbf{经典方法：}
-  \begin{itemize}
-    \item 翻转、旋转、裁剪、改变颜色等。
-  \end{itemize}
-  \textbf{现代方法：}
-  \begin{itemize}
-    \item 混合两张图片（Mixup）~\parencite{zhangMixupEMPIRICALRISK2018}。
-    \item 剪切并粘贴图片部分（CutMix）~\parencite{yunCutMixRegularizationStrategy2019}。
-  \end{itemize}
-  \begin{figure}
-    \centering
-    \includegraphics[width=0.5\linewidth]{aug_new_methods.png}
-    \caption[]{\scriptsize 现代增强方法示意图。从左到右：Mixup~\parencite{zhangMixupEMPIRICALRISK2018}，Cutout~\parencite{devriesImprovedRegularizationConvolutional2017}，CutMix~\parencite{yunCutMixRegularizationStrategy2019}。}
-  \end{figure}
-  \bottomleftrefs
-\end{frame}
-\end{refsection}
+  \begin{frame}{我们如何进行数据增强？}
+    \textbf{经典方法：}
+      \begin{itemize}
+        \item 翻转、旋转、裁剪、改变颜色等。
+      \end{itemize}
+      \textbf{现代方法：}
+      \begin{itemize}
+        \item 将两张图片混合（Mixup）~\parencite{zhangMixupEMPIRICALRISK2018}。
+        \item 剪切并粘贴图片的一部分（CutMix）~\parencite{yunCutMixRegularizationStrategy2019}。
+      \end{itemize}
+    \begin{minipage}{0.58\linewidth}
+      \begin{figure}
+        \centering
+        \includegraphics[width=0.6\linewidth]{aug_new_methods.png}
+        \caption[]{\scriptsize 现代数据增强方法示意图。从左到右依次为：Mixup~\parencite{zhangMixupEMPIRICALRISK2018}，Cutout~\parencite{devriesImprovedRegularizationConvolutional2017}，CutMix~\parencite{yunCutMixRegularizationStrategy2019}。}
+      \end{figure}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.4\linewidth}
+      \tiny
+      \textbf{软标签示例（CutMix）：}
+      \vspace{0.5em}
+      \begin{equation*}
+        \text{cutmix\_label} = \lambda \cdot \text{label}_A + (1 - \lambda) \cdot \text{label}_B
+      \end{equation*}
+      \vspace{-0.5em}
+      \begin{equation*}
+        \text{示例：} \quad \lambda = 0.5, \quad \text{label}_A = [1, 0], \quad \text{label}_B = [0, 1]
+      \end{equation*}
+      \vspace{-0.5em}
+      \begin{equation*}
+        \text{cutmix\_label} = 0.5 \times [1, 0] + 0.5 \times [0, 1] = [0.5, 0.5]
+      \end{equation*}
+     
+  
+    \end{minipage}
+    \bottomleftrefs
+  \end{frame}
+  \end{refsection}
+  
 
 %--- 示例数据集：RESISC45 ---
 % \begin{refsection}
