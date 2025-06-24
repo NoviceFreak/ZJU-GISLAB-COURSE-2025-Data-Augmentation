@@ -316,32 +316,143 @@
 \end{refsection}
 
 
-
-
 \begin{refsection}
-  \begin{frame}{DiffusionSat: Framework Overview}
+  \begin{frame}{Introduction to DiffusionSat}
     \begin{figure}
       \centering
-      \includegraphics[width=0.9\linewidth]{diffusionsat_base.png}
-      \caption[]{\scriptsize Conditioning on freely available metadata and using large, publicly available satellite imagery datasets shows DiffusionSat is a powerful generative foundation model for remote sensing data.~\parencite{diffusionset2024}.}
+      \includegraphics[width=0.85\linewidth]{diffusionsat_base.png}
+      \caption{\scriptsize Overall architecture of the DiffusionSat \emph{base} model, showing how freely-available metadata (sensor type, date, location) is fused with a diffusion backbone to generate high-fidelity satellite imagery~\parencite{diffusionset2024}.}
     \end{figure}
     \bottomleftrefs
   \end{frame}
-  \end{refsection}
+\end{refsection}
+
+\begin{refsection}
+  \begin{frame}{Text Encoder in DiffusionSat}
+    \begin{columns}[t]
+      \begin{column}{0.4\textwidth}
+        \small
+        \begin{itemize}
+          \item \textbf{Input Prompt:} \texttt{"A satellite image of a farmland"}
+          \item \textbf{Tokenization:}
+          \begin{itemize}
+            \item Split into subwords $\rightarrow$ tokens
+            \item Example mapping: \(\{\text{"A"}:101,\ \text{" satellite"}:564,\ \dots,\ \texttt{<EOS>}:102\}\)
+          \end{itemize}
+          \item \textbf{CLIP Text Encoder:}
+          \begin{itemize}
+            \item Token IDs $\rightarrow$ 512-dim embedding
+            \item Captures semantic features
+          \end{itemize}
+        \end{itemize}
+      \end{column}
+      \begin{column}{0.6\textwidth}
+        \begin{figure}
+          \centering
+          \includegraphics[width=\linewidth]{diffusionsat_base.png}
+          \caption{\scriptsize The text encoder module (OpenAI CLIP) tokenizes the input prompt and produces a 512-dimensional embedding to condition the diffusion backbone~\parencite{diffusionset2024}.}
+        \end{figure}
+      \end{column}
+    \end{columns}
+    \bottomleftrefs
+  \end{frame}
+\end{refsection}
+
+\begin{refsection}
+  \begin{frame}{Metadata Encoder in DiffusionSat}
+    \begin{columns}[t]
+      \begin{column}{0.4\textwidth}
+        \small
+        \begin{itemize}
+          \item \textbf{Input Metadata Example:}
+          \begin{itemize}
+            \item Sensor: Sentinel-2
+            \item Location: (lat: 37.7749, lon: -122.4194)
+            \item Date: 2022-06-01
+            \item GSD: 10 m
+            \item Cloud cover: 5\%
+          \end{itemize}
+          \item \textbf{Processing Module:} Metadata Encoder
+          \item \textbf{Output:} 512-dim conditioning embedding
+        \end{itemize}
+      \end{column}
+      \begin{column}{0.6\textwidth}
+        \begin{figure}
+          \centering
+          \includegraphics[width=\linewidth]{diffusionsat_base.png}
+          \caption{\scriptsize The Metadata Encoder transforms raw satellite metadata into a fixed-length embedding to condition the diffusion backbone~\parencite{diffusionset2024}.}
+        \end{figure}
+      \end{column}
+    \end{columns}
+    \bottomleftrefs
+  \end{frame}
+\end{refsection}
+
+\begin{refsection}
+  \begin{frame}{Image Processing \& Diffusion Steps}
+    \begin{columns}[t]
+      \begin{column}{0.5\textwidth}
+        \tiny
+        \begin{itemize}
+          \item \textbf{Training Process:}
+          \begin{itemize}
+            \item Input: Clean satellite image
+            \item Encode: Image Encoder $\rightarrow$ latent
+            \item Forward Diffusion: Add Gaussian noise over \(T\) steps
+            \item Conditioning: Inject Text \& Metadata embeddings
+            \item Learn: UNet predicts and removes noise
+          \end{itemize}
+          \item \textbf{Inference Process:}
+          \begin{itemize}
+            \item Input: Random noise latent \(x_T\!\sim\!\mathcal{N}(0,I)\)
+            \item Reverse Diffusion: Iteratively denoise via UNet (conditioned)
+            \item Decode: Latent Decoder $\rightarrow$ final high-fidelity image
+          \end{itemize}
+        \end{itemize}
+      \end{column}
+      \begin{column}{0.5\textwidth}
+        \begin{figure}
+          \centering
+          \includegraphics[width=\linewidth]{diffusionsat_base.png}
+          \caption{\scriptsize Comparison of the training (forward diffusion) and inference (reverse denoising) pipelines in the DiffusionSat base model, showing how images traverse the encoders, diffusion backbone, and decoder~\parencite{diffusionset2024}.}
+        \end{figure}
+      \end{column}
+    \end{columns}
+    \bottomleftrefs
+  \end{frame}
+\end{refsection}
+
+\begin{refsection}
+  \begin{frame}{Reverse Diffusion: Sampling}
+    \begin{columns}[t]
+      \begin{column}{0.4\textwidth}
+        \small
+        \begin{itemize}
+          \item \textbf{High-Level Sampling:} \(x \sim p(\text{noise},\,c_{\text{text}},\,c_{\text{meta}})\)
+          \item \textbf{Where:}
+          \begin{itemize}
+            \item noise: \(x_T\!\sim\!\mathcal{N}(0,I)\)
+            \item \(c_{\text{text}}\): text embedding
+            \item \(c_{\text{meta}}\): metadata embedding
+          \end{itemize}
+        \end{itemize}
+      \end{column}
+      \begin{column}{0.6\textwidth}
+        \begin{figure}
+          \centering
+          \includegraphics[width=\linewidth]{diffusionsat_base.png}
+          \caption{\scriptsize High-level sampling distribution for the DiffusionSat base model.}
+        \end{figure}
+      \end{column}
+    \end{columns}
+    \bottomleftrefs
+  \end{frame}
+\end{refsection}
+
   
-  \begin{refsection}
-    \begin{frame}{DiffusionSat: Single-Image Generation}
-      \begin{figure}
-        \centering
-        \includegraphics[width=0.85\linewidth]{diffusion_sat_samples.png}
-        \caption[]{\scriptsize Here we generate samples from single-image DiffusionSat~\parencite{diffusionset2024}.}
-      \end{figure}
-      \bottomleftrefs
-    \end{frame}
-  \end{refsection}
 
   \begin{refsection}
-    \begin{frame}{DiffusionSat: Framework Overview}
+    \begin{frame}{DiffusionSat+3DControlNet: Framework Overview}
       \begin{figure}
         \centering
         \includegraphics[width=0.9\linewidth]{diffusionsat.png}
@@ -352,7 +463,7 @@
     \end{refsection}
 
   \begin{refsection}
-  \begin{frame}{DiffusionSat: Temporal Prediction Results}
+  \begin{frame}{DiffusionSat+3DControlNet: Temporal Prediction Results}
     \begin{figure}
       \centering
       \includegraphics[width=1.0\linewidth]{diffusionsat_temporal_results.png}
@@ -379,7 +490,7 @@
 
     
   \begin{refsection}
-  \begin{frame}{DiffusionSat: Super-Resolution Results}
+  \begin{frame}{DiffusionSat+3DControlNet:Super-Resolution Results}
     \begin{figure}
       \centering
       \includegraphics[width=0.9\linewidth]{diffusionsat_sr_results.png}

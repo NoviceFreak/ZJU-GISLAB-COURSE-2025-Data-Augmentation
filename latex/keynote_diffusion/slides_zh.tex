@@ -294,27 +294,140 @@
   \end{frame}
 \end{refsection}
 
+
 \begin{refsection}
-  \begin{frame}{DiffusionSat：框架概览}
+  \begin{frame}{DiffusionSat 简介}
     \begin{figure}
       \centering
-      \includegraphics[width=0.9\linewidth]{diffusionsat_base.png}
-      \caption[]{\scriptsize 基于公开元数据和大规模公开卫星影像数据集，DiffusionSat 展示了其作为遥感数据生成基础模型的强大能力。~\parencite{diffusionset2024}}
+      \includegraphics[width=0.85\linewidth]{diffusionsat_base.png}
+      \caption{\scriptsize DiffusionSat \emph{base} 基础模型的整体架构，展示了如何将自由获取的元数据（传感器类型、日期、位置）与扩散主干网络融合，以生成高保真卫星影像~\parencite{diffusionset2024}。}
     \end{figure}
     \bottomleftrefs
   \end{frame}
 \end{refsection}
 
 \begin{refsection}
-  \begin{frame}{DiffusionSat：单幅影像生成}
-    \begin{figure}
-      \centering
-      \includegraphics[width=0.85\linewidth]{diffusion_sat_samples.png}
-      \caption[]{\scriptsize 这里展示了单幅影像 DiffusionSat 的生成样例。~\parencite{diffusionset2024}}
-    \end{figure}
+  \begin{frame}{DiffusionSat 的文本编码器}
+    \begin{columns}[t]
+      \begin{column}{0.4\textwidth}
+        \small
+        \begin{itemize}
+          \item \textbf{输入提示:} \texttt{"A satellite image of a farmland"}
+          \item \textbf{分词:}
+          \begin{itemize}
+            \item 拆分为子词 $\rightarrow$ token
+            \item 示例映射: \(\{\text{"A"}:101,\ \text{" satellite"}:564,\ \dots,\ \texttt{<EOS>}:102\}\)
+          \end{itemize}
+          \item \textbf{CLIP 文本编码器:}
+          \begin{itemize}
+            \item Token ID $\rightarrow$ 512维嵌入
+            \item 捕捉语义特征
+          \end{itemize}
+        \end{itemize}
+      \end{column}
+      \begin{column}{0.6\textwidth}
+        \begin{figure}
+          \centering
+          \includegraphics[width=1.0\linewidth]{diffusionsat_base.png}
+          \caption{\scriptsize 文本编码器模块（OpenAI CLIP）对输入提示进行分词，并生成512维嵌入用于条件扩散主干网络~\parencite{diffusionset2024}。}
+        \end{figure}
+      \end{column}
+    \end{columns}
     \bottomleftrefs
   \end{frame}
 \end{refsection}
+
+\begin{refsection}
+  \begin{frame}{DiffusionSat 的元数据编码器}
+    \begin{columns}[t]
+      \begin{column}{0.4\textwidth}
+        \small
+        \begin{itemize}
+          \item \textbf{输入元数据示例:}
+          \begin{itemize}
+            \item 传感器: Sentinel-2
+            \item 位置: (纬度: 37.7749, 经度: -122.4194)
+            \item 日期: 2022-06-01
+            \item GSD: 10 m
+            \item 云量: 5\%
+          \end{itemize}
+          \item \textbf{处理模块:} 元数据编码器
+          \item \textbf{输出:} 512维条件嵌入
+        \end{itemize}
+      \end{column}
+      \begin{column}{0.6\textwidth}
+        \begin{figure}
+          \centering
+          \includegraphics[width=1.0\linewidth]{diffusionsat_base.png}
+          \caption{\scriptsize 元数据编码器将原始卫星元数据转换为定长嵌入，用于条件扩散主干网络~\parencite{diffusionset2024}。}
+        \end{figure}
+      \end{column}
+    \end{columns}
+    \bottomleftrefs
+  \end{frame}
+\end{refsection}
+
+\begin{refsection}
+  \begin{frame}{图像处理与扩散步骤}
+    \begin{columns}[t]
+      \begin{column}{0.5\textwidth}
+        \small
+        \begin{itemize}
+          \item \textbf{训练流程:}
+          \begin{itemize}
+            \item 输入: 干净的卫星影像
+            \item 编码: 图像编码器 $\rightarrow$ 隐变量
+            \item 正向扩散: 在 \(T\) 步中加入高斯噪声
+            \item 条件: 注入文本和元数据嵌入
+            \item 学习: UNet 预测并去除噪声
+          \end{itemize}
+          \item \textbf{推理流程:}
+          \begin{itemize}
+            \item 输入: 随机噪声隐变量 \(x_T\!\sim\!\mathcal{N}(0,I)\)
+            \item 反向扩散: 通过条件 UNet 迭代去噪
+            \item 解码: 隐变量解码器 $\rightarrow$ 最终高保真影像
+          \end{itemize}
+        \end{itemize}
+      \end{column}
+      \begin{column}{0.5\textwidth}
+        \begin{figure}
+          \centering
+          \includegraphics[width=1.0\linewidth]{diffusionsat_base.png}
+          \caption{\scriptsize DiffusionSat 基础模型中训练（正向扩散）与推理（反向去噪）流程的对比，展示了影像如何经过编码器、扩散主干和解码器~\parencite{diffusionset2024}。}
+        \end{figure}
+      \end{column}
+    \end{columns}
+    \bottomleftrefs
+  \end{frame}
+\end{refsection}
+
+\begin{refsection}
+  \begin{frame}{反向扩散：采样}
+    \begin{columns}[t]
+      \begin{column}{0.4\textwidth}
+        \small
+        \begin{itemize}
+          \item \textbf{生成:} \(x \sim p(\text{noise},\,c_{\text{text}},\,c_{\text{meta}})\)
+          \item \textbf{其中:}
+          \begin{itemize}
+            \item noise: \(x_T\!\sim\!\mathcal{N}(0,I)\)
+            \item \(c_{\text{text}}\): 文本（嵌入）
+            \item \(c_{\text{meta}}\): 元数据（嵌入）
+          \end{itemize}
+        \end{itemize}
+      \end{column}
+      \begin{column}{0.6\textwidth}
+        \begin{figure}
+          \centering
+          \includegraphics[width=1.0\linewidth]{diffusionsat_base.png}
+          \caption{\scriptsize DiffusionSat 基础模型示意图~\parencite{diffusionset2024}。}
+        \end{figure}
+      \end{column}
+    \end{columns}
+    \bottomleftrefs
+  \end{frame}
+\end{refsection}
+  
 
 \begin{refsection}
   \begin{frame}{DiffusionSat+3DControlNet：框架概览}
