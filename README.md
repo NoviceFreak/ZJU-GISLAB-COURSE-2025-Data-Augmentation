@@ -1,12 +1,12 @@
 # ZJU-GISLAB-COURSE-2025-Data-Augmentation
 
 <a href="https://bili-sakura.github.io/ZJU-GISLAB-COURSE-2025-Data-Augmentation/">
-  <img src="https://img.shields.io/badge/Project-blue?style=for-the-badge" alt="Project Page Badge">
+  <img src="https://img.shields.io/badge/Keynotes-blue?style=for-the-badge" alt="Project Page Badge">
 </a>
 
-Is synthetic data from generative models ready for image recognition?
+Remote Sensing Data Augmentation for Building Damage Extraction
 
----
+> We have a naive try last year (2024 Summer) focusing on text-image-to-image generation, see [repo](https://github.com/Bili-Sakura/ZJU-GISLAB-COURSE-2024).
 
 ## Project Outline
 
@@ -15,6 +15,7 @@ Is synthetic data from generative models ready for image recognition?
   - Real Dataset: xBD ~22k bi-temporal pairs
   - Augment Dataset: 1x - 4x on Real Dataset (using Image Editing model)
 
-- Baseline Models
-  - [OpenAI CLIP-ViT-B](https://hf-mirror.com/openai/clip-vit-base-patch16)
-  - [Google Siglip2-ViT-B](https://hf-mirror.com/google/siglip2-base-patch16-224)
+- Baseline Models (Open-Vocubulary Sementic Segmentation)
+  - [CLIPSeg](https://github.com/timojl/clipseg) @CVPR'22 [(Paper)](https://openaccess.thecvf.com/content/CVPR2022/html/Luddecke_Image_Segmentation_Using_Text_and_Image_Prompts_CVPR_2022_paper.html)
+  - [MaskCLIP](https://github.com/chongzhou96/MaskCLIP) @ECCV'2022 [(Paper)](https://www.ecva.net/papers/eccv_2022/papers_ECCV/papers/136880687.pdf)
+  - [ClearCLIP](https://github.com/mc-lan/ClearCLIP) @ECCV'2024 [(Paper)](https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/06346.pdf)
