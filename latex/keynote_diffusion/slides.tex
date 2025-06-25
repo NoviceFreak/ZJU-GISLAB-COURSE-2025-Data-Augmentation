@@ -113,6 +113,26 @@
 \end{frame}
 \end{refsection}
 
+
+\begin{frame}{Forward Diffusion Process and Step-by-Step Expansion}
+  \textbf{Summary of the Forward Diffusion Process:}
+  \begin{align*}
+      x_t = \sqrt{\alpha_t} x_{t-1} + \sqrt{1 - \alpha_t} \epsilon_t, \quad q(x_t \mid x_{t-1}) \sim \mathcal{N}\left(x_t; \sqrt{1 - \beta_t} x_{t-1}, \beta_t \mathbf{I} \right) \\
+      x_t = \sqrt{\bar{\alpha}_t} x_0 + \sqrt{1 - \bar{\alpha}_t} \epsilon, \quad \bar{\alpha}_t = \prod_{i=1}^{t} \alpha_i
+  \end{align*}
+  \vspace{1em}
+  \textbf{Detailed Step-by-Step Expansion:}
+  \begin{align*}
+      x_t &= \sqrt{\alpha_t} x_{t-1} + \sqrt{1 - \alpha_t} \epsilon_t \\
+      x_t &= \sqrt{\alpha_t} \left( \sqrt{\alpha_{t-1}} x_{t-2} + \sqrt{1 - \alpha_{t-1}} \epsilon_{t-1} \right) + \sqrt{1 - \alpha_t} \epsilon_t \\
+      x_t &= \sqrt{\alpha_t \alpha_{t-1}} x_{t-2} + \sqrt{\alpha_t} \sqrt{1 - \alpha_{t-1}} \epsilon_{t-1} + \sqrt{1 - \alpha_t} \epsilon_t \\
+      x_t &= \sqrt{\alpha_t \alpha_{t-1} \alpha_{t-2}} x_{t-3} + \cdots + \sqrt{1 - \alpha_t \alpha_{t-1}} \epsilon \\
+      x_t &= \sqrt{\bar{\alpha}_t} x_0 + \sqrt{1 - \bar{\alpha}_t} \epsilon \\
+      % \bar{\alpha}_t &= \prod_{i=1}^{t} \alpha_i
+  \end{align*}
+\end{frame}
+
+
 \begin{refsection}
 \begin{frame}{Diffusion Kernel}
   \begin{figure}

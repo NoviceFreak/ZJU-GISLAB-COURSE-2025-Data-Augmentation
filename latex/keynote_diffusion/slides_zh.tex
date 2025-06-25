@@ -136,6 +136,25 @@
 \end{frame}
 \end{refsection}
 
+
+\begin{frame}{正向扩散过程与展开推导}
+  \textbf{正向扩散过程摘要：}
+  \begin{align*}
+      x_t = \sqrt{\alpha_t} x_{t-1} + \sqrt{1 - \alpha_t} \epsilon_t, \quad q(x_t \mid x_{t-1}) \sim \mathcal{N}\left(x_t; \sqrt{1 - \beta_t} x_{t-1}, \beta_t \mathbf{I} \right) \\
+      x_t = \sqrt{\bar{\alpha}_t} x_0 + \sqrt{1 - \bar{\alpha}_t} \epsilon, \quad \bar{\alpha}_t = \prod_{i=1}^{t} \alpha_i
+  \end{align*}
+  \vspace{1em}
+  \textbf{详细展开推导：}
+  \begin{align*}
+      x_t &= \sqrt{\alpha_t} x_{t-1} + \sqrt{1 - \alpha_t} \epsilon_t \\
+      x_t &= \sqrt{\alpha_t} \left( \sqrt{\alpha_{t-1}} x_{t-2} + \sqrt{1 - \alpha_{t-1}} \epsilon_{t-1} \right) + \sqrt{1 - \alpha_t} \epsilon_t \\
+      x_t &= \sqrt{\alpha_t \alpha_{t-1}} x_{t-2} + \sqrt{\alpha_t} \sqrt{1 - \alpha_{t-1}} \epsilon_{t-1} + \sqrt{1 - \alpha_t} \epsilon_t \\
+      x_t &= \sqrt{\alpha_t \alpha_{t-1} \alpha_{t-2}} x_{t-3} + \cdots + \sqrt{1 - \alpha_t \alpha_{t-1}} \epsilon \\
+      x_t &= \sqrt{\bar{\alpha}_t} x_0 + \sqrt{1 - \bar{\alpha}_t} \epsilon \\
+      % \bar{\alpha}_t &= \prod_{i=1}^{t} \alpha_i
+  \end{align*}
+\end{frame}
+  
 \begin{refsection}
   \begin{frame}{正向扩散中分布会发生什么？}
       到目前为止，我们讨论了扩散核 $q(\mathbf{x}_t|\mathbf{x}_0)$，但 $q(\mathbf{x}_t)$ 呢？
