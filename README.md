@@ -8,6 +8,10 @@ Remote Sensing Data Augmentation for Building Damage Extraction
 
 > We have a naive try last year (2024 Summer) focusing on text-image-to-image generation, see [repo](https://github.com/Bili-Sakura/ZJU-GISLAB-COURSE-2024).
 
+![](./assets/project_view1.PNG)
+![](./assets/project_view2.PNG)
+![](./assets/project_supp.PNG)
+
 ## Project Outline
 
 - Dataset
