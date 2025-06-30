@@ -20,7 +20,7 @@ Remote Sensing Data Augmentation for Building Damage Extraction
   - Augment Dataset: 1x - 4x on Real Dataset (using Image Editing model)
 
 - Baseline Models (Open-Vocubulary Sementic Segmentation)
-  - [CLIPSeg](https://github.com/timojl/clipseg) @CVPR'22 [(Paper)](https://openaccess.thecvf.com/content/CVPR2022/html/Luddecke_Image_Segmentation_Using_Text_and_Image_Prompts_CVPR_2022_paper.html)
+  - [CLIPSeg](https://github.com/timojl/clipseg) @CVPR'22 [(Paper)](https://openaccess.thecvf.com/content/CVPR2022/html/Luddecke_Image_Segmentation_Using_Text_and_Image_Prompts_CVPR_2022_paper.html) [Transformers Fast Implement](https://hf-mirror.com/docs/transformers/main/en/model_doc/clipseg) [Model Checkpoint](https://hf-mirror.com/CIDAS/clipseg-rd64-refined)
   - [MaskCLIP](https://github.com/chongzhou96/MaskCLIP) @ECCV'2022 [(Paper)](https://www.ecva.net/papers/eccv_2022/papers_ECCV/papers/136880687.pdf)
   - [ClearCLIP](https://github.com/mc-lan/ClearCLIP) @ECCV'2024 [(Paper)](https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/06346.pdf)
 
