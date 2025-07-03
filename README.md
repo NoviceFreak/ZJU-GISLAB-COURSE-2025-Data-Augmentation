@@ -25,3 +25,24 @@ Remote Sensing Data Augmentation for Building Damage Extraction
   - [ClearCLIP](https://github.com/mc-lan/ClearCLIP) @ECCV'2024 [(Paper)](https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/06346.pdf)
 
 > These baseline models are derived from paper of ['SegEarth-OV' (CVPR'2025 Oral)](https://openaccess.thecvf.com/content/CVPR2025/html/Li_SegEarth-OV_Towards_Training-Free_Open-Vocabulary_Segmentation_for_Remote_Sensing_Images_CVPR_2025_paper.html). You can view its GitHub [repo](https://github.com/likyoo/SegEarth-OV) to find exisitng inference and evaluation codes.
+
+## Others
+
+If you are going to load and process `.tiff` image files, following [here](https://www.kaggle.com/code/yassinealouini/working-with-tiff-files).
+
+```python
+# using rasterio
+
+import rasterio
+from torchvision.transforms import ToTensor
+
+path = "sample.tiff"
+
+with rasterio.open(path) as image:
+    image_array = image.read()
+
+torch_image = ToTensor()(image_array)
+print(torch_image.shape)
+```
+
+
